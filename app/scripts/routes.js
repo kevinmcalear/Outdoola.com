@@ -81,6 +81,10 @@ angular.module('outdoolacomApp')
         templateUrl: 'views/chat.html',
         controller: 'ChatCtrl'
       })
+      .when('/adventure', {
+        templateUrl: 'views/adventure.html',
+        controller: 'AdventureCtrl'
+      })
       .otherwise({redirectTo: '/'});
   }])
 
