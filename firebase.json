@@ -1,6 +1,6 @@
 {
   "firebase": "outdoola1",
-  "public": "app",
+  "public": "dist",
   "ignore": [
     "firebase.json",
     "**/.*",
