@@ -1,1 +1,9 @@
 <p>This is the adventure view.</p>
+<form>
+  <input placeholder="Message..." ng-model="newMessage">
+  <button type="submit" ng-click="addMessage(newMessage);newMessage = null;">send</button>
+</form>
+
+<ul id="messages" ng-show="messages.length">
+  <li ng-repeat="message in messages | reverse">{{message.text}}</li>
+</ul>
