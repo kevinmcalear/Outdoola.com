@@ -1,9 +1,11 @@
 <p>This is the adventure view.</p>
 <form>
-  <input placeholder="Message..." ng-model="newMessage">
-  <button type="submit" ng-click="addMessage(newMessage);newMessage = null;">send</button>
+  <input placeholder="Name" ng-model="newAdventure.name">
+  <input placeholder="Description" ng-model="newAdventure.description">
+  <input placeholder="Price" ng-model="newAdventure.price">
+  <button type="submit" ng-click="addAdventure(newAdventure);newMessage = null;">send</button>
 </form>
-
-<ul id="messages" ng-show="messages.length">
-  <li ng-repeat="message in messages | reverse">{{message.text}}</li>
+{{user.uid}}
+<ul id="adventures" ng-show="adventures.length">
+  <li ng-repeat="adventure in adventures | reverse">{{adventure}}</li>
 </ul>
