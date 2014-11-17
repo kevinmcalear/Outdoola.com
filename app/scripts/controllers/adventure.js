@@ -9,7 +9,7 @@
  */
 angular.module('outdoolacomApp')
   .controller('AdventureCtrl', function ($scope, fbutil, $timeout) {
-    $scope.user = user;
+    // $scope.user = user;
 
     // synchronize a read-only, synchronized array of messages, limit to most recent 10
     $scope.adventures = fbutil.syncArray('adventures', {limit: 10});
@@ -21,7 +21,7 @@ angular.module('outdoolacomApp')
     $scope.addAdventure = function(newAdventure) {
       if( newAdventure ) {
         // push a message to the end of the array
-        $scope.adventures.$add({text: newAdventure, user:user})
+        $scope.adventures.$add( { text: newAdventure } )
           // display any errors
           .catch(alert);
       }

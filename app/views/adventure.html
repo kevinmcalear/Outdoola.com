@@ -3,9 +3,9 @@
   <input placeholder="Name" ng-model="newAdventure.name">
   <input placeholder="Description" ng-model="newAdventure.description">
   <input placeholder="Price" ng-model="newAdventure.price">
-  <button type="submit" ng-click="addAdventure(newAdventure);newMessage = null;">send</button>
+  <button type="submit" ng-click="addAdventure(newAdventure);newAdventure = null;">send</button>
 </form>
-{{user.uid}}
+<!-- {{user.uid}} -->
 <ul id="adventures" ng-show="adventures.length">
-  <li ng-repeat="adventure in adventures | reverse">{{adventure}}</li>
+  <li ng-repeat="adventure in adventures | reverse">{{adventure.text}}</li>
 </ul>
