@@ -12,7 +12,7 @@ angular.module('outdoolacomApp')
     // $scope.user = user;
 
     // synchronize a read-only, synchronized array of messages, limit to most recent 10
-    $scope.adventures = fbutil.syncArray('adventures', {limit: 10});
+    $scope.adventures = fbutil.syncArray('adventures', {limit: 20});
 
     // display any errors
     $scope.adventures.$loaded().catch(alert);

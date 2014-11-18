@@ -8,13 +8,6 @@
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
     <!-- build:css(.) styles/vendor.css -->
     <!-- bower:css -->
-    <link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.css" />
-    <link rel="stylesheet" href="bower_components/toastr/toastr.css" />
-    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
-    <link rel="stylesheet" href="bower_components/morris.js/morris.css" />
-    <link rel="stylesheet" href="bower_components/jquery-steps/demo/css/jquery.steps.css" />
-    <link rel="stylesheet" href="bower_components/angular-ui-tree/dist/angular-ui-tree.min.css" />
-    <link rel="stylesheet" href="bower_components/ng-tags-input/ng-tags-input.min.css" />
     <!-- endbower -->
     <!-- endbuild -->
     <!-- build:css(.tmp) styles/main.css -->
@@ -32,11 +25,12 @@
         <ul class="nav nav-pills pull-right">
           <li class="active"><a ng-href="#">Home</a></li>
           <!-- //angularfire -->
-          <li><a ng-href="#/chat">chat</a></li>
-          <li><a ng-href="#/adventure">adventures</a></li>
+          <li><a ng-href="#/chat">Chat</a></li>
+          <li ng-show-auth=""><a ng-href="#/adventure">My Adventures</a></li>
+          <li ng-show-auth=""><a ng-href="#/explore">Explore</a></li>
           <li>
-            <a ng-hide-auth="" href="#/login">log in</a>
-            <a ng-show-auth="" href="#/account">account</a>
+            <a ng-hide-auth="" href="#/login">Log In</a>
+            <a ng-show-auth="" href="#/account">Account</a>
           </li>
           </ul>
         <h3 class="text-muted">outdoolacom</h3>
@@ -70,7 +64,6 @@
 
     <!-- build:js(.) scripts/vendor.js -->
     <!-- bower:js -->
-    <script src="bower_components/modernizr/modernizr.js"></script>
     <script src="bower_components/jquery/dist/jquery.js"></script>
     <script src="bower_components/angular/angular.js"></script>
     <script src="bower_components/json3/lib/json3.js"></script>
@@ -96,26 +89,6 @@
     <script src="bower_components/firebase-simple-login/firebase-simple-login.js"></script>
     <script src="bower_components/mockfirebase/dist/mockfirebase.js"></script>
     <script src="bower_components/angularfire/dist/angularfire.min.js"></script>
-    <script src="bower_components/toastr/toastr.js"></script>
-    <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
-    <script src="bower_components/seiyria-bootstrap-slider/js/bootstrap-slider.js"></script>
-    <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
-    <script src="bower_components/requirejs/require.js"></script>
-    <script src="bower_components/jquery.easy-pie-chart/dist/jquery.easypiechart.js"></script>
-    <script src="bower_components/raphael/raphael.js"></script>
-    <script src="bower_components/mocha/mocha.js"></script>
-    <script src="bower_components/morris.js/morris.js"></script>
-    <script src="bower_components/jquery.slimscroll/jquery.slimscroll.min.js"></script>
-    <script src="bower_components/gauge.js/dist/gauge.js"></script>
-    <script src="bower_components/gauge.js/dist/gauge.min.js"></script>
-    <script src="bower_components/jquery-steps/build/jquery.steps.js"></script>
-    <script src="bower_components/angular-wizard/dist/angular-wizard.js"></script>
-    <script src="bower_components/textAngular/dist/textAngular.min.js"></script>
-    <script src="bower_components/angular-ui-tree/dist/angular-ui-tree.js"></script>
-    <script src="bower_components/ngmap/dist/ng-map.js"></script>
-    <script src="bower_components/ng-tags-input/ng-tags-input.min.js"></script>
-    <script src="bower_components/flot/jquery.flot.js"></script>
-    <script src="bower_components/flot.tooltip/js/jquery.flot.tooltip.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
 
