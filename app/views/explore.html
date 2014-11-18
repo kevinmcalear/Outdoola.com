@@ -1,9 +1,11 @@
-<h1>hello</h1>
+<h1>Explore Adventures</h1>
+{{user.uid}}
 <div ng-repeat="adventure in adventures | reverse" class="panel panel-default">
   <div class="panel-heading">
     <h3 class="panel-title">{{adventure.text.name}}</h3>
   </div>
   <div class="panel-body">
     <p>{{adventure.text.description}}</p><strong>{{adventure.text.price}}</strong>
+    <img  class="img-responsive img-thumbnail" src="http://placekitten.com/g/200/200">
   </div>
 </div>

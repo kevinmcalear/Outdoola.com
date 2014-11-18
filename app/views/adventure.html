@@ -1,11 +1,62 @@
-<p>This is the adventure view.</p>
-<form>
-  <input placeholder="Name" ng-model="newAdventure.name">
-  <input placeholder="Description" ng-model="newAdventure.description">
-  <input placeholder="Price" ng-model="newAdventure.price">
-  <button type="submit" ng-click="addAdventure(newAdventure);newAdventure = null;">send</button>
-</form>
-<!-- {{user.uid}} -->
-<ul id="adventures" ng-show="adventures.length">
-  <li ng-repeat="adventure in adventures | reverse">{{adventure.text}}</li>
-</ul>
+<h3>Add A New Adventure.</h3>
+<div class="panel panel-default">
+  <div class="panel-body">
+    <form role="form">
+      <div class="form-group">
+        <label for="adventureName">Adventure's Name</label>
+        <input class="form-control required" id="adventureName" placeholder="Name" ng-model="newAdventure.name">
+      </div>
+      <div class="form-group">
+        <label for="adventureDescription">Description</label>
+        <textarea class="form-control required" id="adventureDescription" placeholder="Description" ng-model="newAdventure.description" rows="3"></textarea>
+      </div>
+      <div class="form-group">
+        <label for="adventurePrice">Price Per Person</label>
+      <input
+        type="number"
+        name="currency"
+        min="0"
+        max="9999"
+        step="0.01"
+        size="4"
+        title="CDA Currency Format - no dollar sign and no comma(s) - cents (.##) are optional"
+        class="form-control required"
+        id="adventurePrice"
+        placeholder="$00.00"
+        ng-model="newAdventure.price">
+      </div>
+      <div class="form-group">
+        <label for="exampleInputFile">Upload A Picture</label>
+        <input type="file" id="exampleInputFile">
+        <p class="help-block">Select a picture to represent your Adventure.</p>
+      </div>
+      <div class="form-group">
+        <label for="adventureSize">Adventure Size</label>
+        <select id="adventureSize" class="form-control required" ng-model="newAdventure.size">
+          <option value="" disabled selected>Choose The Number Of People</option>
+          <option value='1'>1 Person</option>
+          <option value='2'>2 People</option>
+          <option value='3'>3 People</option>
+          <option value='4'>4 People</option>
+          <option value='5'>5 People</option>
+        </select>
+      </div>
+      <button type="submit" class="btn btn-default btn-primary" ng-click="addAdventure(newAdventure);newAdventure = null;">Add Your New Adventure</button>
+    </form>
+  </div>
+</div>
+<br>
+<br>
+
+
+<h3>Your Hosted Adventures.</h3>
+<hr>
+<div ng-repeat="adventure in adventures | reverse" class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">{{adventure.text.name}}</h3>
+  </div>
+  <div class="panel-body">
+    <p>{{adventure.text.description}}</p><strong>${{adventure.text.price}}</strong>
+    <p ng-show="adventure.text.size.length >= 1">{{adventure.text.size == '1' ? adventure.text.size + "Person": adventure.text.size + "People" }}</p>
+  </div>
+</div>
