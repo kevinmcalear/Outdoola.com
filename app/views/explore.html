@@ -1,11 +1,19 @@
 <h1>Explore Adventures</h1>
-{{user.uid}}
-<div ng-repeat="adventure in adventures | reverse" class="panel panel-default">
-  <div class="panel-heading">
-    <h3 class="panel-title">{{adventure.text.name}}</h3>
-  </div>
-  <div class="panel-body">
-    <p>{{adventure.text.description}}</p><strong>{{adventure.text.price}}</strong>
-    <img  class="img-responsive img-thumbnail" src="http://placekitten.com/g/200/200">
+{{profile.id}}
+<div ng-repeat="adventure in adventures | reverse" class="col-md-6 min-350">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h3 class="panel-title">{{adventure.text.name}}</h3>
+    </div>
+    <div class="panel-body">
+    <div class="col-xs-6">
+      <p><strong>${{adventure.text.price}}</strong></p>
+      </div>
+    <div class="col-xs-6">
+
+      <p>{{adventure.text.description}}</p>
+</div>
+      <img  class="img-responsive img-thumbnail" src="http://placekitten.com/g/200/200">
+    </div>
   </div>
 </div>

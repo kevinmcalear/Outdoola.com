@@ -1,16 +1,35 @@
 <div class="panel panel-default">
 <div class="row-fluid">
-<div class="col-md-4">
-  <h3>Profile</h3>
+<div class="col-md-12">
+  <div class="panel-body">
+    <form role="form">
+      <div class="col-md-6">
+        <h4>Live Edit Your Profile.</h4>
+        <img class="img-responsive img-thumbnail" height='200px' width='200px' src="http://placehold.it/200x200">
 
-
-
-    <div class="panel-body">
-      <form role="form">
         <div class="form-group">
-          <label>Account ID</label>
-          <br />{{user.uid}}
+          <label for="exampleInputFile">Upload A Profile Picture</label>
+          <input type="file" id="exampleInputFile">
         </div>
+        <h3>{{profile.first_name}} {{profile.last_name}}</h3>
+        <div class="col-md-6">
+          <div class="form-group">
+            <label>Username</label>
+            <br />@{{profile.username}}
+          </div>
+          <div class="form-group">
+            <label>Account ID</label>
+            <br />{{user.uid}}
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group">
+            <label>Description</label>
+            <br />{{profile.description}}
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6">
         <div class="form-group">
           <div class="input-group">
             <label class="sr-only" for="username" class="form-control" id="exampleInputEmail2">User Name:</label>
@@ -34,71 +53,58 @@
           <label for="adventureDescription">Description</label>
           <textarea class="form-control required" id="adventureDescription" placeholder="Description" ng-model="profile.description" rows="3"></textarea>
         </div>
-        <div class="form-group">
-
-        </div>
-        <div class="form-group">
-          <label for="exampleInputFile">Upload A Profile Picture</label>
-          <input type="file" id="exampleInputFile">
-        </div>
-        <button role="button" ng-click="logout()" class="btn btn-danger">Log Out</button>
-      </form>
-    </div>
-
-
-
-
-
-  <p>
-
-  </p>
+      </div>
+    </form>
+  </div>
 </div>
 
-<div class="col-md-4">
-<form role="form">
-  <h3>Change Password</h3>
 
-  <p class="form-group">
-    <label>Old Password:</label>
-    <input type="password" ng-keypress="clear()" ng-model="oldpass" class="form-control" />
-  </p>
 
-  <p class="form-group">
-    <label>New Password:</label>
-    <input type="password" ng-keypress="clear()" ng-model="newpass" class="form-control" />
-  </p>
+<div class="col-md-6">
+  <form role="form">
+    <h3>Change Password</h3>
 
-  <p class="form-group">
-    <label>Confirm New Password:</label>
-    <input type="password" ng-keypress="clear()" ng-model="confirm" class="form-control" />
-  </p>
+    <p class="form-group">
+      <label>Old Password:</label>
+      <input type="password" ng-keypress="clear()" ng-model="oldpass" class="form-control" />
+    </p>
 
-  <button class="btn btn-primary" ng-click="changePassword(oldpass, newpass, confirm)">change password</button>
+    <p class="form-group">
+      <label>New Password:</label>
+      <input type="password" ng-keypress="clear()" ng-model="newpass" class="form-control" />
+    </p>
 
-  <p class="error" ng-show="err">{{err}}</p>
-  <p class="good" ng-show="msg">{{msg}}</p>
-</form>
+    <p class="form-group">
+      <label>Confirm New Password:</label>
+      <input type="password" ng-keypress="clear()" ng-model="confirm" class="form-control" />
+    </p>
+
+    <button class="btn btn-primary" ng-click="changePassword(oldpass, newpass, confirm)">change password</button>
+
+    <p class="error" ng-show="err">{{err}}</p>
+    <p class="good" ng-show="msg">{{msg}}</p>
+  </form>
 </div>
 
-<div class="col-md-4">
-<form>
-  <h3>Change Email</h3>
+<div class="col-md-6">
+  <form>
+    <h3>Change Email</h3>
 
-  <p class="form-group">
-    <label>New Email:</label>
-    <input type="text" ng-keypress="clear()" ng-model="newEmail" class="form-control" />
-  </p>
+    <p class="form-group">
+      <label>New Email:</label>
+      <input type="text" ng-keypress="clear()" ng-model="newEmail" class="form-control" />
+    </p>
 
-  <p class="form-group">
-    <label>Password:</label>
-    <input type="password" ng-keypress="clear()" ng-model="pass" class="form-control" />
-  </p>
+    <p class="form-group">
+      <label>Password:</label>
+      <input type="password" ng-keypress="clear()" ng-model="pass" class="form-control" />
+    </p>
 
-  <button class="btn btn-primary" ng-click="changeEmail(pass, newEmail)">update email</button>
-</form>
+    <button class="btn btn-primary" ng-click="changeEmail(pass, newEmail)">update email</button>
+  </form>
 </div>
 
 </div>
 <p class="clearfix"></p>
 <div ng-repeat="message in messages" class="alert alert-{{message.type}}">{{message.text}}</div>
-  </div>
+</div>
