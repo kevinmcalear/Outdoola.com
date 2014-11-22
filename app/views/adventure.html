@@ -51,7 +51,7 @@
 
 <h3>Your Hosted Adventures.</h3>
 <hr>
-<div ng-repeat="adventure in adventures | reverse" class="panel panel-default">
+<div ng-repeat="adventure in adventures | reverse" class="panel panel-default" ng-show="user.uid == adventure.text.owner.uid" >
   <div class="panel-heading">
     <h3 class="panel-title">{{adventure.text.name}}</h3>
   </div>

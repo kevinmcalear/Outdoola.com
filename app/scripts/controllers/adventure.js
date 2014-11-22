@@ -8,8 +8,15 @@
  * Controller of the outdoolacomApp
  */
 angular.module('outdoolacomApp')
-  .controller('AdventureCtrl', function ($scope, fbutil, $timeout) {
-    // $scope.user = user;
+  .controller('AdventureCtrl', function ($scope, simpleLogin, fbutil, $timeout) {
+
+    // Filling in our User
+    simpleLogin.getUser().then(function(user) {
+      $scope.user = user;
+      user = user;
+      // Loading up this User's Profile
+      loadProfile(user);
+    });
 
     // synchronize a read-only, synchronized array of messages, limit to most recent 10
     $scope.adventures = fbutil.syncArray('adventures', {limit: 20});
@@ -20,7 +27,9 @@ angular.module('outdoolacomApp')
     // provide a method for adding a message
     $scope.addAdventure = function(newAdventure) {
       if( newAdventure ) {
-        // push a message to the end of the array
+        // add a user to the adventure
+        newAdventure.owner = $scope.user;
+        // push an adventure to the end of the array
         $scope.adventures.$add( { text: newAdventure } )
           // display any errors
           .catch(alert);
@@ -40,5 +49,12 @@ angular.module('outdoolacomApp')
       'Karma'
     ];
 
+
+    function loadProfile(user) {
+      if( $scope.profile ) {
+        $scope.profile.$destroy();
+      }
+      fbutil.syncObject('users/'+user.uid).$bindTo($scope, 'profile');
+    }
 
   });
