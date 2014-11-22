@@ -1,0 +1,47 @@
+<div class="col-md-6">
+  <h3>Your Booked Adventures.</h3>
+  <hr>
+    <div ng-repeat="adventure in adventures | reverse" class="min-450">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3 class="panel-title">{{adventure.text.name}}</h3>
+        </div>
+        <div class="panel-body">
+          <img  class="img-responsive img-thumbnail" src="http://placekitten.com/g/200/200">
+          <div class="col-xs-6">
+            <h6>Price</h6>
+            <p><strong>${{adventure.text.price}}</strong></p>
+          </div>
+          <div class="col-xs-6">
+          <h6>Description</h6>
+          <p>{{adventure.text.description}}</p>
+        </div>
+        <button type="button" class="btn btn-primary btn-lg btn-block">View Booking</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="col-md-6">
+  <h3>Your Hosted Adventures.</h3>
+  <hr>
+     <div ng-repeat="adventure in adventures | reverse" class="min-450">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3 class="panel-title">{{adventure.text.name}}</h3>
+        </div>
+        <div class="panel-body">
+          <img  class="img-responsive img-thumbnail" src="http://placekitten.com/g/200/200">
+          <div class="col-xs-6">
+            <h6>Price</h6>
+            <p><strong>${{adventure.text.price}}</strong></p>
+          </div>
+          <div class="col-xs-6">
+          <h6>Description</h6>
+          <p>{{adventure.text.description}}</p>
+        </div>
+        <button type="button" class="btn btn-primary btn-lg btn-block">Edit Adventure</button>
+      </div>
+    </div>
+  </div>
+</div>

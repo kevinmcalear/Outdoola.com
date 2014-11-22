@@ -85,6 +85,10 @@ angular.module('outdoolacomApp')
         templateUrl: 'views/adventure.html',
         controller: 'AdventureCtrl'
       })
+      .when('/adventures', {
+        templateUrl: 'views/my-adventures.html',
+        controller: 'AdventureCtrl'
+      })
       .when('/explore', {
         templateUrl: 'views/explore.html',
         controller: 'AdventureCtrl'
