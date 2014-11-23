@@ -1,23 +1,26 @@
 <h1>Explore Adventures</h1>
 
-<div ng-repeat="adventure in adventures | reverse" class="col-md-6 min-450">
-  <br>
-  <div class="panel panel-default">
-    <div class="panel-heading">
-      <h3 class="panel-title">{{adventure.text.name}}</h3>
-    </div>
-    <div class="panel-body">
-      <img  class="img-responsive img-thumbnail" src="//placekitten.com/g/200/200">
-      <div class="col-xs-12">
-        <h6>Price</h6>
-        <p><strong>${{adventure.text.price}}</strong> / Person</p>
-      </div>
-      <div class="col-xs-12">
-      <h6 ng-show="adventure.text.size.length >= 1"><strong>This Adventure Books:</strong></h6>
-      <p ng-show="adventure.text.size.length >= 1">{{adventure.text.size == '1' ? adventure.text.size + " Person": adventure.text.size + " People" }}</p>
-    </div>
-    <h6>Description</h6>
-    <p>{{adventure.text.description}}</p>
+<div ng-repeat="adventure in adventures | reverse" class="panel panel-default">
+  <div class="clearfix panel-heading">
+    <h3 class="panel-title"><a ng-href="#/adventures/{{adventure.text.id}}">{{adventure.text.name}}</a></h3>
+    <!-- <div class="pull-right">
+      <button type="button" class="btn btn-primary">Edit</button>&nbsp;
+      <button type="button" class="btn btn-danger">Delete</button>
+    </div> -->
+  </div>
+  <div class="panel-body">
+    <div class="col-xs-6">
+    <p>Price: <strong>${{adventure.text.price}}</strong> / Person</p>
+    <img  class="img-responsive img-thumbnail" src="//placekitten.com/g/200/200">
     <button type="button" class="btn btn-danger btn-lg btn-block">Book Adventure</button>
+    </div>
+    <div class="col-xs-6">
+      <p><strong>What You're Getting Into:</strong></p>
+      <p>{{adventure.text.description}}</p>
+      <p ng-show="adventure.text.size.length >= 1"><strong>This Adventure Books:</strong></p>
+      <p ng-show="adventure.text.size.length >= 1">{{adventure.text.size == '1' ? adventure.text.size + " Person": adventure.text.size + " People" }}</p>
+      <map ng-show="{{ adventure.text.location.length >= 1 }}" center="encodeAddress( {{ adventure.text.location }} );" zoom="12" styles="[{stylers:[{hue:'#b2e6ad'},{visibility:'simplified'},{gamma:0.5},{weight:0.5}]},{elementType:'labels',stylers:[{visibility:'off'}]},{featureType:'water',stylers:[{color:'#ADD8E6'}]}]"></map>
+    </div>
+
   </div>
 </div>

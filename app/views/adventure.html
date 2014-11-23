@@ -68,7 +68,7 @@
 <hr>
 <div ng-repeat="adventure in adventures | reverse" class="panel panel-default" ng-show="user.uid == adventure.text.owner.uid" >
   <div class="clearfix panel-heading">
-    <h3 class="panel-title">{{adventure.text.name}}</h3>
+    <h3 class="panel-title"><a ng-href="#/adventures/{{adventure.text.id}}">{{adventure.text.name}}</a></h3>
     <div class="pull-right">
       <button type="button" class="btn btn-primary">Edit</button>&nbsp;
       <button type="button" class="btn btn-danger">Delete</button>
