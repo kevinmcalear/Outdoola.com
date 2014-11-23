@@ -26,5 +26,8 @@
     "angular-scenario": "1.2.16",
     "mockfirebase": "0.2.x"
   },
-  "appPath": "app"
+  "appPath": "app",
+  "resolutions": {
+    "angular-bootstrap": "~0.12.0"
+  }
 }

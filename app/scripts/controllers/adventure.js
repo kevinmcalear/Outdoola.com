@@ -8,7 +8,7 @@
  * Controller of the outdoolacomApp
  */
 angular.module('outdoolacomApp')
-  .controller('AdventureCtrl', function ($scope, simpleLogin, fbutil, $timeout) {
+  .controller('AdventureCtrl', function ($scope, $window, simpleLogin, fbutil, $timeout) {
 
     // Filling in our User
     simpleLogin.getUser().then(function(user) {
@@ -36,6 +36,12 @@ angular.module('outdoolacomApp')
       }
     };
 
+
+   $scope.tabs = [
+      { title:'Dynamic Title 1', content:'Dynamic content 1' },
+      { title:'Dynamic Title 2', content:'Dynamic content 2', disabled: true }
+    ];
+
     function alert(msg) {
       $scope.err = msg;
       $timeout(function() {
@@ -56,5 +62,11 @@ angular.module('outdoolacomApp')
       }
       fbutil.syncObject('users/'+user.uid).$bindTo($scope, 'profile');
     }
+
+    $scope.alertMe = function() {
+      setTimeout(function() {
+        $window.alert('You\'ve selected the alert tab!');
+      });
+    };
 
   });
