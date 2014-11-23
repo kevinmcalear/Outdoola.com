@@ -19,5 +19,6 @@ angular.module('outdoolacomApp', [
     'firebase',
     'firebase.utils',
     'simpleLogin',
-    'ui.bootstrap'
+    'ui.bootstrap',
+    'ngMap'
   ]);

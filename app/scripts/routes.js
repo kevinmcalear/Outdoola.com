@@ -93,6 +93,10 @@ angular.module('outdoolacomApp')
         templateUrl: 'views/explore.html',
         controller: 'AdventureCtrl'
       })
+      .when('/adventures/:adventureId', {
+        templateUrl: 'views/show-adventure.html',
+        controller: 'ShowAdventureCtrl'
+      })
       .otherwise({redirectTo: '/'});
   }])
 

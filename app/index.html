@@ -49,14 +49,14 @@
 
 
     <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
-     <script>
-       (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-       (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-       m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-       })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
-       ga('create', 'UA-XXXXX-X');
-       ga('send', 'pageview');
+      ga('create', 'UA-57028809-1', 'auto');
+      ga('send', 'pageview');
     </script>
 
     <!-- build:js(.) scripts/oldieshim.js -->
@@ -98,23 +98,46 @@
     <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
     <script src="bower_components/seiyria-bootstrap-slider/js/bootstrap-slider.js"></script>
     <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
+    <script src="bower_components/ngmap/build/scripts/ng-map.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
 
+    <!-- Google Maps -->
+    <script src="//maps.google.com/maps/api/js"></script>
+
         <!-- build:js({.tmp,app}) scripts/scripts.js -->
+        <!-- Core App Script -->
         <script src="scripts/app.js"></script>
-        <script src="scripts/controllers/main.js"></script>
+
+        <!-- App Routes -->
+        <script src="scripts/routes.js"></script>
+
+        <!-- App Filters -->
+        <script src="scripts/filters/reverse.js"></script>
+
+        <!-- AngularFire Scripts -->
         <script src="scripts/angularfire/config.js"></script>
         <script src="scripts/angularfire/firebase.utils.js"></script>
-        <script src="scripts/controllers/chat.js"></script>
-        <script src="scripts/filters/reverse.js"></script>
         <script src="scripts/angularfire/simpleLogin.js"></script>
+
+        <!-- App Controllers -->
+        <script src="scripts/controllers/main.js"></script>
+        <script src="scripts/controllers/chat.js"></script>
         <script src="scripts/controllers/login.js"></script>
         <script src="scripts/controllers/account.js"></script>
+        <script src="scripts/controllers/adventure.js"></script>
+        <script src="scripts/controllers/showAdventure.js"></script>
+
+        <!-- App Directives -->
         <script src="scripts/directives/ngShowAuth.js"></script>
         <script src="scripts/directives/ngHideAuth.js"></script>
-        <script src="scripts/routes.js"></script>
-        <script src="scripts/controllers/adventure.js"></script>
         <!-- endbuild -->
+
+  <!-- Additional Scripting -->
+  <script type="text/javascript">
+    // Setting up our geocoding object
+    geocoder = new google.maps.Geocoder();
+  </script>
+
 </body>
 </html>

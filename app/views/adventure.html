@@ -1,3 +1,4 @@
+
 <!-- Temporaraly using this for the dropdown template -->
 <script type="text/ng-template" id="customTemplate.html">
   <a>
@@ -79,10 +80,11 @@
     <img  class="img-responsive img-thumbnail" src="//placekitten.com/g/200/200">
     </div>
     <div class="col-xs-6">
-    <p><strong>What You're Getting Into:</strong></p>
-    <p>{{adventure.text.description}}</p>
-    <p ng-show="adventure.text.size.length >= 1"><strong>This Adventure Books:</strong></p>
-    <p ng-show="adventure.text.size.length >= 1">{{adventure.text.size == '1' ? adventure.text.size + " Person": adventure.text.size + " People" }}</p>
+      <p><strong>What You're Getting Into:</strong></p>
+      <p>{{adventure.text.description}}</p>
+      <p ng-show="adventure.text.size.length >= 1"><strong>This Adventure Books:</strong></p>
+      <p ng-show="adventure.text.size.length >= 1">{{adventure.text.size == '1' ? adventure.text.size + " Person": adventure.text.size + " People" }}</p>
+      <map ng-show="{{ adventure.text.location.length >= 1 }}" center="encodeAddress( {{ adventure.text.location }} );" zoom="12" styles="[{stylers:[{hue:'#b2e6ad'},{visibility:'simplified'},{gamma:0.5},{weight:0.5}]},{elementType:'labels',stylers:[{visibility:'off'}]},{featureType:'water',stylers:[{color:'#ADD8E6'}]}]"></map>
     </div>
   </div>
 </div>
