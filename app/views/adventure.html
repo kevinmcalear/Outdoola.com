@@ -1,3 +1,11 @@
+<!-- Temporaraly using this for the dropdown template -->
+<script type="text/ng-template" id="customTemplate.html">
+  <a>
+      <img ng-src="http://upload.wikimedia.org/wikipedia/commons/thumb/{{match.model.flag}}" width="16">
+      <span bind-html-unsafe="match.label | typeaheadHighlight:query"></span>
+  </a>
+</script>
+
 <h3>Add A New Adventure.</h3>
 <div class="panel panel-default">
   <div class="panel-body">
@@ -6,6 +14,12 @@
         <label for="adventureName">Adventure's Name</label>
         <input class="form-control required" id="adventureName" placeholder="Name" ng-model="newAdventure.name">
       </div>
+      <div class="form-group">
+        <label for="adventureName">Adventure's Location</label>
+        <input type="text" ng-model="newAdventure.location" placeholder="Start Typing The Address" typeahead="address for address in getLocation($viewValue)" typeahead-loading="loadingLocations" class="form-control">
+        <i ng-show="loadingLocations" class="glyphicon glyphicon-refresh"></i>
+      </div>
+
       <div class="form-group">
         <label for="adventureDescription">Description</label>
         <textarea class="form-control required" id="adventureDescription" placeholder="Description" ng-model="newAdventure.description" rows="3"></textarea>
@@ -27,7 +41,7 @@
       </div>
       <div class="form-group">
         <label for="exampleInputFile">Upload A Picture</label>
-        <input type="file" id="exampleInputFile">
+        <input type="file" id="exampleInputFile" ng-model="newAdventure.picture">
         <p class="help-block">Select a picture to represent your Adventure.</p>
       </div>
       <div class="form-group">
@@ -72,3 +86,19 @@
     </div>
   </div>
 </div>
+
+
+<!-- <div class="fb-image-upload">
+  <form ng-submit="upload_image(image)">
+    <div class="fb-error" ng-show="error">{{error}}</div>
+    <div class="fb-inputs" ng-hide="image.isUploading">
+      <input class="fb-image-upload" fb-image-upload class="fb-input" type="file" name="image"/>
+      <input class="fb-submit" type="submit" value="Upload Image" ng-show="image.valid"/>
+    </div>
+    <div class="fb-uploading" ng-show="image.isUploading">
+      Uploading...
+    </div>
+    <input type="submit" value="Submit">
+  </form>
+</div>
+ -->
