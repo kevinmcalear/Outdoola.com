@@ -12,6 +12,7 @@
     <div class="col-xs-6">
     <p>Price: <strong>${{adventure.text.price}}</strong> / Person</p>
     <img  class="img-responsive img-thumbnail" src="//placekitten.com/g/200/200">
+    <p>{{adventure.text.owner}} {{adventure.text.owner.last_name}}</p>
     <button type="button" class="btn btn-danger btn-lg btn-block">Book Adventure</button>
     </div>
     <div class="col-xs-6">
@@ -19,7 +20,9 @@
       <p>{{adventure.text.description}}</p>
       <p ng-show="adventure.text.size.length >= 1"><strong>This Adventure Books:</strong></p>
       <p ng-show="adventure.text.size.length >= 1">{{adventure.text.size == '1' ? adventure.text.size + " Person": adventure.text.size + " People" }}</p>
-      <map ng-show="{{ adventure.text.location.length >= 1 }}" center="encodeAddress( {{ adventure.text.location }} );" zoom="12" styles="[{stylers:[{hue:'#b2e6ad'},{visibility:'simplified'},{gamma:0.5},{weight:0.5}]},{elementType:'labels',stylers:[{visibility:'off'}]},{featureType:'water',stylers:[{color:'#ADD8E6'}]}]"></map>
+      <map ng-show="{{ adventure.text.location.length >= 1 }}" center="encodeAddress( {{ adventure.text.location }} );" zoom="12" map-type-id="TERRAIN" disable-default-u-i="true">
+        <marker position="encodeAddress( {{ adventure.text.location }} );" icon="images/marker.png"></marker>
+      </map>
     </div>
 
   </div>
