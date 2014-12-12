@@ -12,7 +12,7 @@
     <div class="col-xs-6">
     <p>Price: <strong>${{adventure.text.price}}</strong> / Person</p>
     <img  class="img-responsive img-thumbnail" src="//placekitten.com/g/200/200">
-    <p>{{adventure.text.owner}} {{adventure.text.owner.last_name}}</p>
+    <p><strong>Host:</strong> {{adventure.text.owner.email}}</p>
     <button type="button" class="btn btn-danger btn-lg btn-block">Book Adventure</button>
     </div>
     <div class="col-xs-6">
@@ -24,6 +24,5 @@
         <marker position="encodeAddress( {{ adventure.text.location }} );" icon="images/marker.png"></marker>
       </map>
     </div>
-
   </div>
 </div>
