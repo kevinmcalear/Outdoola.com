@@ -42,8 +42,10 @@
       </div>
       <div class="form-group">
         <label for="exampleInputFile">Upload A Picture</label>
-        <input type="file" id="exampleInputFile" ng-model="newAdventure.picture">
+        <input type="file" id="exampleInputFile" ng-model="newAdventure.picture" base-sixty-four-input>
         <p class="help-block">Select a picture to represent your Adventure.</p>
+        Image Preview: <br>
+        <img class="img-responsive img-thumbnail" ng-if="newAdventure.picture" ng-src="data:{{newAdventure.picture.filetype}};base64,{{newAdventure.picture.base64}}" alt="">
       </div>
       <div class="form-group">
         <label for="adventureSize">Adventure Size</label>
@@ -69,7 +71,7 @@
 <div ng-repeat="adventure in adventures | reverse" class="panel panel-default" ng-show="user.uid == adventure.text.owner.uid" >
   <form editable-form onaftersave="adventures.$save(adventure)" name="editableForm">
     <div class="clearfix panel-heading">
-      <h3 class="panel-title"><a ng-href="#/adventures/{{adventure.text.id}}"><a href="" editable-text="adventure.text.name">{{adventure.text.name}}</a></a></h3>
+      <h3 class="panel-title"><a ng-href="#/adventures/{{adventure.$id}}"><a href="" editable-text="adventure.text.name">{{adventure.text.name}}</a></a></h3>
       <div class="pull-right">
         <span ng-show="editableForm.$visible">
           <button type="submit" class="btn btn-primary" ng-disabled="editableForm.$waiting">
@@ -86,7 +88,9 @@
     <div class="panel-body">
       <div class="col-xs-6">
       <p>Price: <strong>$<a href="" editable-text="adventure.text.price">{{adventure.text.price}}</a></strong> / Person</p>
-      <img  class="img-responsive img-thumbnail" src="//placekitten.com/g/200/200">
+      <img  class="img-responsive img-thumbnail" ng-src="data:{{adventure.text.picture.filetype}};base64,{{adventure.text.picture.base64}}">
+      <!-- {{adventure.picture.filetype}};base64,{{adventure.picture.base64}} -->
+      <!-- {{adventure.price}} -->
       </div>
       <div class="col-xs-6">
         <p><strong>What You're Getting Into:</strong></p>
@@ -94,7 +98,7 @@
         <p ng-show="adventure.text.size.length >= 1"><strong>This Adventure Books:</strong></p>
         <p ng-show="adventure.text.size.length >= 1">{{adventure.text.size == '1' ? adventure.text.size + " Person": adventure.text.size + " People" }}</p>
         <map ng-show="{{ adventure.text.location.length >= 1 }}" center="encodeAddress( {{ adventure.text.location }} );" zoom="12" map-type-id="TERRAIN" disable-default-u-i="true">
-          <marker position="encodeAddress( {{ adventure.text.location }} );" icon="//transfer.sh/SBKXf/marker.png"></marker>
+          <marker position="encodeAddress( {{ adventure.text.location }} );" icon="//s3.amazonaws.com/outdoola/marker.png"></marker>
         </map>
       </div>
     </div>

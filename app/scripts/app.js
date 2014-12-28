@@ -21,7 +21,8 @@ angular.module('outdoolacomApp', [
     'simpleLogin',
     'ui.bootstrap',
     'ngMap',
-    'xeditable'
+    'xeditable',
+    'naif.base64'
   ])
 .run(function(editableOptions) {
   editableOptions.theme = 'bs3'; // bootstrap3 theme. Can be also 'bs2', 'default'
