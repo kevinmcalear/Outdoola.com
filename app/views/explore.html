@@ -1,6 +1,7 @@
 <h1>Explore Adventures</h1>
-
-<div ng-repeat="adventure in adventures | reverse" class="panel panel-default">
+<input type="text" class="form-control" ng-model="searchText" placeholder="Search anything here.">
+<p class="clearfix"></p>
+<div ng-repeat="adventure in adventures | reverse | filter:searchText" class="panel panel-default">
   <div class="clearfix panel-heading">
     <h3 class="panel-title"><a ng-href="#/adventures/{{adventure.$id}}">{{adventure.text.name}}</a></h3>
     <!-- <div class="pull-right">

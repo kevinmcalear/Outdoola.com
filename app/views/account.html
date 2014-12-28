@@ -1,110 +1,122 @@
-<div class="panel panel-default">
-<div class="row-fluid">
-<div class="col-md-12">
-  <div class="panel-body">
-    <form role="form">
-      <div class="col-md-6">
-        <h4>Live Edit Your Profile.</h4>
-        <img ng-if="profile.picture" class="img-responsive img-thumbnail" height='200px' width='200px' ng-src="data:{{profile.picture.filetype}};base64,{{profile.picture.base64}}">
+<tabset justified="true">
+  <tab heading="My Profile">
+    <!-- <div class="panel panel-default">
+      <div class="row-fluid">
+        <div class="col-md-12">
+          <div class="panel-body"> -->
+            <form role="form">
+              <div class="col-md-6">
+                <h4>Live Edit Your Profile.</h4>
+                <img ng-if="profile.picture" class="img-responsive img-thumbnail" height='200px' width='200px' ng-src="data:{{profile.picture.filetype}};base64,{{profile.picture.base64}}">
+                <div class="form-group">
+                  <label for="exampleInputFile">Upload A Profile Picture</label>
+                  <input type="file" id="exampleInputFile" ng-model="profile.picture" base-sixty-four-input>
+                </div>
+                <h3>{{profile.first_name}} {{profile.last_name}}</h3>
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label>Username</label>
+                    <br />@{{profile.username}}
+                  </div>
+                  <div class="form-group">
+                    <label>Account ID</label>
+                    <br />{{user.uid}}
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label>Description</label>
+                    <br />{{profile.description}}
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <div class="input-group">
+                    <label class="sr-only" for="username" class="form-control" id="exampleInputEmail2">User Name:</label>
+                    <div class="input-group-addon">@</div>
+                    <input type="text" name="name" ng-model="profile.username" class="form-control" id="username" />
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label>First Name:</label>
+                  <input type="text" name="name" ng-model="profile.first_name" class="form-control" />
+                </div>
+                <div class="form-group">
+                  <label>Last Name:</label>
+                  <input type="text" name="name" ng-model="profile.last_name" class="form-control" />
+                </div>
+                <div class="form-group">
+                  <label>Email:</label>
+                  <input type="text" name="email" ng-model="profile.email" class="form-control" />
+                </div>
+                <div class="form-group">
+                  <label for="adventureDescription">Description</label>
+                  <textarea class="form-control required" id="adventureDescription" placeholder="Description" ng-model="profile.description" rows="3"></textarea>
+                </div>
+                <button role="button" ng-click="logout()" class="btn btn-danger btn-block">Log Out</button>
 
-        <div class="form-group">
-          <label for="exampleInputFile">Upload A Profile Picture</label>
-          <input type="file" id="exampleInputFile" ng-model="profile.picture" base-sixty-four-input>
-        </div>
-        <h3>{{profile.first_name}} {{profile.last_name}}</h3>
-        <div class="col-md-6">
-          <div class="form-group">
-            <label>Username</label>
-            <br />@{{profile.username}}
-          </div>
-          <div class="form-group">
-            <label>Account ID</label>
-            <br />{{user.uid}}
-          </div>
-        </div>
-        <div class="col-md-6">
-          <div class="form-group">
-            <label>Description</label>
-            <br />{{profile.description}}
-          </div>
+              </div>
+            </form>
+          <!-- </div>
         </div>
       </div>
-      <div class="col-md-6">
-        <div class="form-group">
-          <div class="input-group">
-            <label class="sr-only" for="username" class="form-control" id="exampleInputEmail2">User Name:</label>
-            <div class="input-group-addon">@</div>
-            <input type="text" name="name" ng-model="profile.username" class="form-control" id="username" />
-          </div>
-        </div>
-        <div class="form-group">
-          <label>First Name:</label>
-          <input type="text" name="name" ng-model="profile.first_name" class="form-control" />
-        </div>
-        <div class="form-group">
-          <label>Last Name:</label>
-          <input type="text" name="name" ng-model="profile.last_name" class="form-control" />
-        </div>
-        <div class="form-group">
-          <label>Email:</label>
-          <input type="text" name="email" ng-model="profile.email" class="form-control" />
-        </div>
-        <div class="form-group">
-          <label for="adventureDescription">Description</label>
-          <textarea class="form-control required" id="adventureDescription" placeholder="Description" ng-model="profile.description" rows="3"></textarea>
-        </div>
-      </div>
-    </form>
-  </div>
-</div>
+    </div> -->
+     <p class="clearfix"></p>
+    </div>
+  </tab>
 
+  <tab heading="Change Password">
+    <!-- <div class="col-md-6"> -->
+      <form role="form">
+        <h3>Change Password</h3>
 
+        <p class="form-group">
+          <label>Old Password:</label>
+          <input type="password" ng-keypress="clear()" ng-model="oldpass" class="form-control" />
+        </p>
 
-<div class="col-md-6">
-  <form role="form">
-    <h3>Change Password</h3>
+        <p class="form-group">
+          <label>New Password:</label>
+          <input type="password" ng-keypress="clear()" ng-model="newpass" class="form-control" />
+        </p>
 
-    <p class="form-group">
-      <label>Old Password:</label>
-      <input type="password" ng-keypress="clear()" ng-model="oldpass" class="form-control" />
-    </p>
+        <p class="form-group">
+          <label>Confirm New Password:</label>
+          <input type="password" ng-keypress="clear()" ng-model="confirm" class="form-control" />
+        </p>
 
-    <p class="form-group">
-      <label>New Password:</label>
-      <input type="password" ng-keypress="clear()" ng-model="newpass" class="form-control" />
-    </p>
+        <button class="btn btn-primary" ng-click="changePassword(oldpass, newpass, confirm)">change password</button>
 
-    <p class="form-group">
-      <label>Confirm New Password:</label>
-      <input type="password" ng-keypress="clear()" ng-model="confirm" class="form-control" />
-    </p>
+        <p class="error" ng-show="err">{{err}}</p>
+        <p class="good" ng-show="msg">{{msg}}</p>
+      </form>
+     <p class="clearfix"></p>
+  </tab>
+  <tab heading="Change Email">
+    <!-- <div class="col-md-6"> -->
+      <form>
+        <h3>Change Email</h3>
 
-    <button class="btn btn-primary" ng-click="changePassword(oldpass, newpass, confirm)">change password</button>
+        <p class="form-group">
+          <label>New Email:</label>
+          <input type="text" ng-keypress="clear()" ng-model="newEmail" class="form-control" />
+        </p>
 
-    <p class="error" ng-show="err">{{err}}</p>
-    <p class="good" ng-show="msg">{{msg}}</p>
-  </form>
-</div>
+        <p class="form-group">
+          <label>Password:</label>
+          <input type="password" ng-keypress="clear()" ng-model="pass" class="form-control" />
+        </p>
 
-<div class="col-md-6">
-  <form>
-    <h3>Change Email</h3>
+        <button class="btn btn-primary" ng-click="changeEmail(pass, newEmail)">update email</button>
+      </form>
+    <!-- </div> -->
 
-    <p class="form-group">
-      <label>New Email:</label>
-      <input type="text" ng-keypress="clear()" ng-model="newEmail" class="form-control" />
-    </p>
+    <!-- </div> -->
+     <p class="clearfix"></p>
+  </tab>
+    <p class="clearfix"></p>
+    <div ng-repeat="message in messages" class="alert alert-{{message.type}}">{{message.text}}</div>
+    </div>
 
-    <p class="form-group">
-      <label>Password:</label>
-      <input type="password" ng-keypress="clear()" ng-model="pass" class="form-control" />
-    </p>
-
-    <button class="btn btn-primary" ng-click="changeEmail(pass, newEmail)">update email</button>
-  </form>
-</div>
-
-</div>
-<p class="clearfix"></p>
-<div ng-repeat="message in messages" class="alert alert-{{message.type}}">{{message.text}}</div>
-</div>
+</tabset>

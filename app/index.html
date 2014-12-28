@@ -27,9 +27,9 @@
     <div class="container">
       <div class="header">
         <ul class="nav nav-pills pull-right">
-          <li class="active"><a ng-href="#">Home</a></li>
+          <li ng-hide-auth=""><a ng-href="#">Home</a></li>
           <!-- //angularfire -->
-          <li><a ng-href="#/chat">Chat</a></li>
+          <!-- <li><a ng-href="#/chat">Chat</a></li> -->
           <li ng-show-auth=""><a ng-href="#/adventures">My Adventures</a></li>
           <li ng-show-auth=""><a ng-href="#/adventure">Create Adventures</a></li>
           <li ng-show-auth=""><a ng-href="#/explore">Explore</a></li>
@@ -37,6 +37,9 @@
             <a ng-hide-auth="" href="#/login">Log In</a>
             <a ng-show-auth="" href="#/account">Account</a>
           </li>
+        <!--   <li>
+            <button ng-show-auth role="button" ng-click="logout()" class="btn btn-danger">Log Out</button>
+          </li> -->
           </ul>
         <h3 class="text-muted">Outdoola</h3>
       </div>
@@ -44,7 +47,7 @@
       <div ng-view=""></div>
 
       <div class="footer">
-        <p><span class="glyphicon glyphicon-heart"></span> from the Yeoman team</p>
+        <p>Made with <span class="glyphicon glyphicon-heart"></span> in Brooklyn.</p>
       </div>
     </div>
 

@@ -8,10 +8,15 @@
  * Controller of the outdoolacomApp
  */
 angular.module('outdoolacomApp')
-  .controller('MainCtrl', function ($scope) {
+  .controller('MainCtrl', function ($scope, $rootScope, simpleLogin) {
     $scope.awesomeThings = [
       'HTML5 Boilerplate',
       'AngularJS',
       'Karma'
     ];
+    $rootScope.logout = simpleLogin.logout;
+    // $scope.logout = simpleLogin.logout
+    // console.log($scope.logout)
+    // console.log('hi')
+
   });
