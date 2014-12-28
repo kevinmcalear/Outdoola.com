@@ -21,7 +21,7 @@
       <p ng-show="adventure.text.size.length >= 1"><strong>This Adventure Books:</strong></p>
       <p ng-show="adventure.text.size.length >= 1">{{adventure.text.size == '1' ? adventure.text.size + " Person": adventure.text.size + " People" }}</p>
       <map ng-show="{{ adventure.text.location.length >= 1 }}" center="encodeAddress( {{ adventure.text.location }} );" zoom="12" map-type-id="TERRAIN" disable-default-u-i="true">
-        <marker position="encodeAddress( {{ adventure.text.location }} );" icon="images/marker.png"></marker>
+        <marker position="encodeAddress( {{ adventure.text.location }} );" icon="//s3.amazonaws.com/outdoola/marker.png"></marker>
       </map>
     </div>
 
