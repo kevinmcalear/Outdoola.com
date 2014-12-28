@@ -9,9 +9,11 @@
  */
 
 angular.module('outdoolacomApp')
-  .controller('ShowAdventureCtrl', function ($scope, $routeParams) {
+  .controller('ShowAdventureCtrl', function ($scope, $routeParams, $firebase) {
 
-    $scope.order_id = $routeParams.adventureId;
+    var ref = new Firebase('https://outdoola1.firebaseio.com/adventures/'+$routeParams.adventureId)
+    $scope.adventure = $firebase(ref).$asObject();
+
     // $scope.$on('mapInitialized', function(event, map) {
     //   map.setCenter( )
 
