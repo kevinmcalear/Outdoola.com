@@ -25,7 +25,7 @@
       ];
       $scope.admin = {
         layout: 'wide',
-        menu: 'vertical',
+        menu: 'horizontal',
         fixedHeader: true,
         fixedSidebar: false,
         pageTransition: $scope.pageTransitionOpts[0]
