@@ -88,7 +88,7 @@
     <div class="panel-body">
       <div class="col-xs-6">
       <p>Price: <strong>$<a href="" editable-text="adventure.text.price">{{adventure.text.price}}</a></strong> / Person</p>
-      <img  class="img-responsive img-thumbnail" ng-src="data:{{adventure.text.picture.filetype}};base64,{{adventure.text.picture.base64}}">
+      <img ng-if="adventure.text.picture" class="img-responsive img-thumbnail" ng-src="data:{{adventure.text.picture.filetype}};base64,{{adventure.text.picture.base64}}">
       <!-- {{adventure.picture.filetype}};base64,{{adventure.picture.base64}} -->
       <!-- {{adventure.price}} -->
       </div>
