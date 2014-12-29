@@ -1,6 +1,11 @@
 <div class="page">
   <h1>Explore Adventures</h1>
-  <input type="text" class="form-control" ng-model="searchText" placeholder="Search anything here.">
+  <div class="search-box visible-md visible-lg">
+    <div class="input-group">
+      <span class="input-group-addon"><i class="fa fa-search text-muted"></i></span>
+      <input class="form-control" type="text" class="form-control" ng-model="searchText" placeholder="Search anything here.">
+    </div>
+  </div>
   <p class="clearfix"></p>
   <div ng-repeat="adventure in adventures | reverse | filter:searchText" class="panel panel-default">
     <div class="clearfix panel-heading">

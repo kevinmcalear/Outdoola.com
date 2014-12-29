@@ -4,7 +4,7 @@
     <div class="logo">
         <a href="#/" ng-click="reloadRoute()">
             <!-- <span class="logo-icon glyphicon glyphicon-fire"></span> -->
-            <i class="wi-sunrise logo-icon"></i>
+            <i class="glyphicon glyphicon-fire logo-icon"></i>
             <span>{{main.brand}}</span>
         </a>
     </div>
@@ -64,20 +64,20 @@
                     <li><a href="javascript:;" class="color-option color-some_color" data-style="some_color"></a></li>
                 </ul>
             </li> -->
-            <li class="search-box visible-md visible-lg">
+            <li ng-show-auth class="search-box visible-md visible-lg">
                 <div class="input-group">
                     <span class="input-group-addon"><i class="fa fa-search text-muted"></i></span>
                     <input type="text" class="form-control" placeholder="Search Adventures...">
                 </div>
             </li>
-            <li style="display:none;" class="signin">
+            <li ng-hide-auth class="signin">
                 <a href="#/pages/about" ng-click="reloadRoute()">
                     About
                     <!-- <i class="fa fa-lock"></i>
                     <span data-i18n="Account"></span> -->
                 </a>
             </li>
-            <li style="display:none;" class="signin">
+            <li ng-hide-auth class="signin">
                 <a href="#/pages/contact" ng-click="reloadRoute()">
                     Contact
                     <!-- <i class="fa fa-lock"></i>
@@ -137,7 +137,7 @@
 
         <ul class="nav-right pull-right list-unstyled">
 
-            <li class="dropdown text-normal nav-profile">
+            <li ng-show-auth class="dropdown text-normal nav-profile">
                 <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown">
                     <img src="images/g1.jpg" alt="" class="img-circle img30_30">
                     <span class="hidden-xs">
@@ -145,36 +145,36 @@
                     </span>
                 </a>
                 <ul class="dropdown-menu with-arrow pull-right">
-                    <li>
-                        <a href="#/pages/profile">
+                 <!--    <li>
+                        <a href="#/account">
                             <i class="fa fa-user"></i>
                             <span data-i18n="My Profile"></span>
                         </a>
-                    </li>
+                    </li> -->
                     <li>
-                        <a href="#/tasks/tasks">
-                            <i class="fa wi-sunrise" style="margin-left:-3px;"></i>
+                        <a href="#/my-adventure">
+                            <i class="glyphicon glyphicon-fire" style="margin-left:-3px;"></i>
                             <span data-i18n="My Adventures"></span>
                         </a>
                     </li>
                     <li>
-                        <a href="#/tasks/tasks">
+                        <a href="#/tasks/your-adventures">
                             <i class="fa fa-ticket" style="margin-left:-1px;"></i>
                             <span data-i18n="My Listings"></span>
                         </a>
                     </li>
                     <li>
-                        <a href="#/pages/lock-screen">
+                        <a href="#/account">
                             <i class="fa fa-lock"></i>
                             <span data-i18n="Account"></span>
                         </a>
                     </li>
-                    <li>
+                  <!--   <li>
                         <a href="#/pages/signin">
                             <i class="fa fa-sign-out"></i>
                             <span data-i18n="Log Out"></span>
                         </a>
-                    </li>
+                    </li> -->
                 </ul>
             </li>
             <!-- <li class="dropdown mail">
@@ -226,21 +226,21 @@
                     </div>
                 </div>
             </li> -->
-            <li class="dropdown langs text-normal btn-new-adventure" >
+            <li ng-show-auth class="dropdown langs text-normal btn-new-adventure" >
                 <a href="#/adventure">
                     <button type="button" class="btn btn-w-md btn-gap-v btn-danger" style="margin-top: -5px;">Host An Adventure</button>
                 </a>
             </li>
-            <li class="dropdown langs text-normal signin" style="display:none;">
-                <a href="#/pages/signup">
+        <!--     <li ng-hide-auth class="dropdown langs text-normal signin">
+                <a href="#/login">
                     <i class="fa fa-user"></i>&nbsp;&nbsp;
                     <span data-i18n="Sign Up"></span>
                 </a>
-            </li>
-            <li class="dropdown langs text-normal signin" style="display:none;">
-                <a href="#/pages/blank">
+            </li> -->
+            <li ng-hide-auth class="dropdown langs text-normal signin">
+                <a href="#/login">
                     <i class="fa fa-user"></i>&nbsp;&nbsp;
-                    <span data-i18n="Login"></span>
+                    <span data-i18n="Login / Sign Up"></span>
                 </a>
             </li>
            <!--  <li class="dropdown langs text-normal" data-ng-controller="LangCtrl">

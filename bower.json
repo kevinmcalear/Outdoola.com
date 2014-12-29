@@ -35,7 +35,8 @@
     "flot": "~0.8.3",
     "flot.tooltip": "~0.8.0",
     "angular-loading-bar": "~0.6.0",
-    "morris.js": "~0.5.1"
+    "morris.js": "~0.5.1",
+    "angular-xeditable":"*"
   },
   "devDependencies": {
     "angular-mocks": "1.2.16",

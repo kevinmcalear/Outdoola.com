@@ -38,7 +38,10 @@ module.exports = function (grunt) {
         tasks: ["coffee:dist"]
       },
       js: {
-        files: ['<%= yeoman.app %>/scripts/{,*/}*.js'],
+        files: [
+          '<%= yeoman.app %>/scripts/{,*/}*.js',
+          '<%= yeoman.app %>/scripts/**/*.js'
+        ],
         tasks: ['newer:jshint:all'],
         options: {
           livereload: '<%= connect.options.livereload %>'
@@ -296,15 +299,89 @@ module.exports = function (grunt) {
     //     }
     //   }
     // },
-    // uglify: {
-    //   dist: {
-    //     files: {
-    //       '<%= yeoman.dist %>/scripts/scripts.js': [
-    //         '<%= yeoman.dist %>/scripts/scripts.js'
-    //       ]
-    //     }
-    //   }
-    // },
+    uglify: {
+      dist: {
+        files: {
+          '<%= yeoman.dist %>/scripts/scripts.js': [
+              '<%= yeoman.dist %>/scripts/app.js',
+              '<%= yeoman.dist %>/scripts/routes.js',
+              '<%= yeoman.dist %>/scripts/filters/reverse.js',
+              '<%= yeoman.dist %>/scripts/angularfire/config.js',
+              '<%= yeoman.dist %>/scripts/angularfire/firebase.utils.js',
+              '<%= yeoman.dist %>/scripts/angularfire/simpleLogin.js',
+              '<%= yeoman.dist %>/scripts/controllers/main.js',
+              '<%= yeoman.dist %>/scripts/controllers/chat.js',
+              '<%= yeoman.dist %>/scripts/controllers/login.js',
+              '<%= yeoman.dist %>/scripts/controllers/account.js',
+              '<%= yeoman.dist %>/scripts/controllers/adventure.js',
+              '<%= yeoman.dist %>/scripts/controllers/showAdventure.js',
+              '<%= yeoman.dist %>/scripts/directives/ngShowAuth.js',
+              '<%= yeoman.dist %>/scripts/directives/ngHideAuth.js',
+              '<%= yeoman.dist %>/scripts/shared/directives.js',
+              '<%= yeoman.dist %>/scripts/shared/localize.js',
+              '<%= yeoman.dist %>/scripts/shared/main.js',
+              '<%= yeoman.dist %>/scripts/shared/Nav.js',
+              '<%= yeoman.dist %>/scripts/Form/FormCtrl.js',
+              '<%= yeoman.dist %>/scripts/Form/FormDirective.js',
+              '<%= yeoman.dist %>/scripts/Form/FormValidation.js',
+              '<%= yeoman.dist %>/scripts/Table/TableCtrl.js',
+              '<%= yeoman.dist %>/scripts/Task/Task.js',
+              '<%= yeoman.dist %>/scripts/UI/Map.js',
+              '<%= yeoman.dist %>/scripts/UI/UICtrl.js',
+              '<%= yeoman.dist %>/scripts/UI/UIDirective.js',
+              '<%= yeoman.dist %>/scripts/UI/UIService.js',
+              '<%= yeoman.dist %>/scripts/Chart/ChartCtrl.js',
+              '<%= yeoman.dist %>/scripts/Chart/ChartDirective.js',
+              '<%= yeoman.dist %>/scripts/Page/PageCtrl.js'
+          ],'<%= yeoman.dist %>/scripts/vendor.js': [
+              '<%= yeoman.dist %>/bower_components/modernizr/modernizr.js',
+              '<%= yeoman.dist %>/bower_components/jquery/dist/jquery.js',
+              '<%= yeoman.dist %>/bower_components/angular/angular.js',
+              '<%= yeoman.dist %>/bower_components/json3/lib/json3.js',
+              '<%= yeoman.dist %>/bower_components/bootstrap-sass-official/assets/javascripts/bootstrap/affix.js',
+              '<%= yeoman.dist %>/bower_components/bootstrap-sass-official/assets/javascripts/bootstrap/alert.js',
+              '<%= yeoman.dist %>/bower_components/bootstrap-sass-official/assets/javascripts/bootstrap/button.js',
+              '<%= yeoman.dist %>/bower_components/bootstrap-sass-official/assets/javascripts/bootstrap/carousel.js',
+              '<%= yeoman.dist %>/bower_components/bootstrap-sass-official/assets/javascripts/bootstrap/collapse.js',
+              '<%= yeoman.dist %>/bower_components/bootstrap-sass-official/assets/javascripts/bootstrap/dropdown.js',
+              '<%= yeoman.dist %>/bower_components/bootstrap-sass-official/assets/javascripts/bootstrap/tab.js',
+              '<%= yeoman.dist %>/bower_components/bootstrap-sass-official/assets/javascripts/bootstrap/transition.js',
+              '<%= yeoman.dist %>/bower_components/bootstrap-sass-official/assets/javascripts/bootstrap/scrollspy.js',
+              '<%= yeoman.dist %>/bower_components/bootstrap-sass-official/assets/javascripts/bootstrap/modal.js',
+              '<%= yeoman.dist %>/bower_components/bootstrap-sass-official/assets/javascripts/bootstrap/tooltip.js',
+              '<%= yeoman.dist %>/bower_components/bootstrap-sass-official/assets/javascripts/bootstrap/popover.js',
+              '<%= yeoman.dist %>/bower_components/angular-resource/angular-resource.js',
+              '<%= yeoman.dist %>/bower_components/angular-cookies/angular-cookies.js',
+              '<%= yeoman.dist %>/bower_components/angular-sanitize/angular-sanitize.js',
+              '<%= yeoman.dist %>/bower_components/angular-animate/angular-animate.js',
+              '<%= yeoman.dist %>/bower_components/angular-touch/angular-touch.js',
+              '<%= yeoman.dist %>/bower_components/angular-route/angular-route.js',
+              '<%= yeoman.dist %>/bower_components/firebase/firebase.js',
+              '<%= yeoman.dist %>/bower_components/firebase-simple-login/firebase-simple-login.js',
+              '<%= yeoman.dist %>/bower_components/mockfirebase/dist/mockfirebase.js',
+              '<%= yeoman.dist %>/bower_components/angularfire/dist/angularfire.min.js',
+              '<%= yeoman.dist %>/bower_components/angular-bootstrap/ui-bootstrap-tpls.js',
+              '<%= yeoman.dist %>/bower_components/ngmap/build/scripts/ng-map.js',
+              '<%= yeoman.dist %>/bower_components/angular-xeditable/dist/js/xeditable.js',
+              '<%= yeoman.dist %>/bower_components/angular-base64-upload/src/angular-base64-upload.js',
+              '<%= yeoman.dist %>/bower_components/jquery.slimscroll/jquery.slimscroll.min.js',
+              '<%= yeoman.dist %>/bower_components/gauge.js/dist/gauge.js',
+              '<%= yeoman.dist %>/bower_components/gauge.js/dist/gauge.min.js',
+              '<%= yeoman.dist %>/bower_components/jquery-steps/build/jquery.steps.js',
+              '<%= yeoman.dist %>/bower_components/angular-wizard/dist/angular-wizard.js',
+              '<%= yeoman.dist %>/bower_components/textAngular/dist/textAngular.min.js',
+              '<%= yeoman.dist %>/bower_components/angular-ui-tree/dist/angular-ui-tree.js',
+              '<%= yeoman.dist %>/bower_components/ng-tags-input/ng-tags-input.min.js',
+              '<%= yeoman.dist %>/bower_components/flot/jquery.flot.js',
+              '<%= yeoman.dist %>/bower_components/flot.tooltip/js/jquery.flot.tooltip.js',
+              '<%= yeoman.dist %>/bower_components/angular-loading-bar/build/loading-bar.js',
+              '<%= yeoman.dist %>/bower_components/raphael/raphael.js',
+              '<%= yeoman.dist %>/bower_components/mocha/mocha.js',
+              '<%= yeoman.dist %>/bower_components/morris.js/morris.js'
+          ]
+        }
+      }
+    },
     // concat: {
     //   dist: {}
     // },

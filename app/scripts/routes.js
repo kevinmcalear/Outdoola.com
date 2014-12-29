@@ -81,11 +81,11 @@ angular.module('outdoolacomApp')
         templateUrl: 'views/chat.html',
         controller: 'ChatCtrl'
       })
-      .when('/adventure', {
+      .whenAuthenticated('/adventure', {
         templateUrl: 'views/adventure.html',
         controller: 'AdventureCtrl'
       })
-      .when('/adventures', {
+      .whenAuthenticated('/adventures', {
         templateUrl: 'views/my-adventures.html',
         controller: 'AdventureCtrl'
       })
@@ -101,7 +101,7 @@ angular.module('outdoolacomApp')
         templateUrl: 'views/explore-more.html',
         controller: 'AdventureCtrl'
       })
-      .when('/your-adventures', {
+      .whenAuthenticated('/your-adventures', {
         templateUrl: 'views/your-adventures.html',
         controller: 'AdventureCtrl'
       })

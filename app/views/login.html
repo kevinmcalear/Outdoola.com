@@ -1,26 +1,70 @@
+<div class="page-signin">
 
-<h2>Login Page</h2>
+    <div class="signin-header">
+        <section class="logo text-center">
+            <a href="#/">{{main.brand}}</a>
+        </section>
+    </div>
 
-<form role="form">
-  <p class="form-group">
-    <label for="loginEmail">email</label>
-    <input id="loginEmail" required name="email" type="email" ng-model="email" class="form-control" />
-  </p>
-  <p class="form-group">
-    <label for="loginPass">password</label>
-    <input id="loginPass" required name="pass" type="password" ng-model="pass" class="form-control" />
-  </p>
-  <p class="form-group" ng-cloak ng-show="createMode">
-    <label for="loginConfirm">confirm pass</label>
-    <input id="loginConfirm" required name="confirm" type="password" ng-model="confirm" class="form-control" />
-  </p>
+    <div class="signin-body text-center">
+        <div class="container">
+            <div class="form-container">
+            <form role="form" class="form-horizontal">
+              <div class="form-group">
+                <label for="loginEmail">email</label>
+                <input id="loginEmail" required name="email" type="email" ng-model="email" class="form-control input-lg input-round text-center" placeholder="example@email.com" />
+              </div>
+              <div class="form-group">
+                <label for="loginPass">password</label>
+                <input id="loginPass" required name="pass" type="password" ng-model="pass" class="form-control input-lg input-round text-center" placeholder="Password" />
+              </div>
+              <div class="form-group" ng-cloak ng-show="createMode">
+                <label for="loginConfirm">confirm pass</label>
+                <input id="loginConfirm" required name="confirm" type="password" ng-model="confirm" class="form-control input-lg input-round text-center" placeholder="Confirm Password" />
+              </div>
 
-  <p>
-    <button  class="btn btn-primary" ng-click="passwordLogin(email, pass)" ng-hide="createMode">Log In</button>
-    <button  class="btn btn-default" ng-click="createMode = true" ng-hide="createMode">Register</button>
-    <button  class="btn btn-primary" ng-cloak ng-show="createMode"
-            ng-click="createAccount(email, pass, confirm)">Create Account</button>
-    <button  class="btn btn-default" ng-cloak ng-show="createMode" ng-click="createMode = false">Cancel</button>
-  </p>
-</form>
-<p ng-show="err" class="bg-danger">{{err}}</p>
+              <div class="form-group">
+                <button class="btn btn-primary btn-lg btn-round btn-w-lg text-center col-md-6" ng-click="passwordLogin(email, pass)" ng-hide="createMode">Log In</button>
+                <button  class="btn btn-default btn-lg btn-round btn-w-lg text-center col-md-6" ng-click="createMode = true" ng-hide="createMode">Register</button>
+                <button  class="btn btn-primary btn-lg btn-round btn-w-lg text-center col-md-6" ng-cloak ng-show="createMode"
+                        ng-click="createAccount(email, pass, confirm)">Create Account</button>
+                <button  class="btn btn-default btn-lg btn-round btn-w-lg text-center col-md-6" ng-cloak ng-show="createMode" ng-click="createMode = false">Cancel</button>
+              </div>
+            </form>
+            <div ng-show="err" class="bg-danger">{{err}}</p>
+
+                <!-- <form class="form-horizontal">
+                    <fieldset>
+                        <div class="form-group">
+                            <div class="btn-icon-lined btn-icon-round btn-icon-sm btn-default-light">
+                                <span class="glyphicon glyphicon-envelope"></span>
+                            </div>
+                            <input type="email"
+                                   class="form-control input-lg input-round text-center"
+                                   placeholder="Username"
+                                   >
+                        </div>
+                        <div class="form-group">
+                            <div class="btn-icon-lined btn-icon-round btn-icon-sm btn-default-light">
+                                <span class="glyphicon glyphicon-lock"></span>
+                            </div>
+                            <input type="password"
+                                   class="form-control input-lg input-round text-center"
+                                   placeholder="Password"
+                                   >
+                        </div>
+                        <div class="form-group">
+                            <a href="#/" class="btn btn-primary btn-lg btn-round btn-block text-center">Log in</a>
+                        </div>
+                    </fieldset>
+                </form>
+
+                <section>
+                    <p class="text-center"><a href="#/pages/forgot-password">Forgot your password?</a></p>
+                    <p class="text-center text-muted text-small">Don't have an account yet? <a href="#/pages/signup">Sign up</a></p>
+                </section>
+ -->
+            </div>
+        </div>
+    </div>
+</div>
