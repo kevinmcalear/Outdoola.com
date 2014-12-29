@@ -22,7 +22,12 @@ angular.module('outdoolacomApp', [
     'ui.bootstrap',
     'ngMap',
     'xeditable',
-    'naif.base64'
+    'naif.base64',
+    'ngAnimate',
+    'textAngular',
+    'ui.tree',
+    'ngTagsInput',
+    'angular-loading-bar'
   ])
 .run(function(editableOptions) {
   editableOptions.theme = 'bs3'; // bootstrap3 theme. Can be also 'bs2', 'default'
