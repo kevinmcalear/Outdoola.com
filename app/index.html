@@ -69,7 +69,7 @@
 
 
     <div class="main-container">
-        <aside data-ng-include=" 'views/nav.html' "
+        <aside ng-show-auth data-ng-include=" 'views/nav.html' "
                id="nav-container"
                class="nav-container"
                data-ng-class=" {'nav-fixed': admin.fixedSidebar, 'nav-horizontal': admin.menu === 'horizontal', 'nav-vertical': admin.menu === 'vertical'}">

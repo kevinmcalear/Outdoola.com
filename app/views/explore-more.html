@@ -100,122 +100,29 @@
       </section>
    </section>
    <section class="col-md-6">
-      <section class="col-md-6">
-       <!-- profile panel -->
+      <section ng-repeat="adventure in adventures | reverse | filter:searchText" class="col-md-6">
+        <!-- profile panel -->
         <div class="panel panel-profile">
-            <div class="panel-heading text-center bg-info">
-                <img alt="" src="images/g1.jpg" class="img-circle img80_80">
-                <h3>{{main.name}}</h3>
-                <p>Boar Hunting</p>
-            </div>
-            <div class="list-justified-container">
-                <ul class="list-justified text-center">
-                    <li>
-                        <p class="size-h3 color-success">$679</p>
-                        <p class="text-muted">Person</p>
-                    </li>
-                    <li>
-                        <p class="size-h3">NY</p>
-                        <p class="text-muted">New York</p>
-                    </li>
-                    <!-- <li>
-                        <p class="size-h3">35</p>
-                        <p class="text-muted">Following</p>
-                    </li> -->
-                </ul>
-            </div>
+          <div class="panel-heading text-center bg-info">
+            <img alt="" ng-if="adventure.text.picture" ng-src="data:{{adventure.text.picture.filetype}};base64,{{adventure.text.picture.base64}}" class="img-circle img80_80">
+            <h3><a ng-href="#/adventures/{{adventure.$id}}">{{adventure.text.name}}</a></h3>
+            <p ng-show="adventure.text.size.length >= 1">{{adventure.text.size == '1' ? adventure.text.size + " Person": adventure.text.size + " People" }}</p>
+          </div>
+          <div class="list-justified-container">
+            <ul class="list-justified text-center">
+              <li>
+                <p class="size-h3 color-success">${{adventure.text.price}}</p>
+                <p class="text-muted">Person</p>
+              </li>
+              <li>
+                <p class="size-h3">{{ adventure.text.location.split(',')[1]}}</p>
+                <p class="text-muted">{{ adventure.text.location.split(',')[0] }}</p>
+              </li>
+            </ul>
+          </div>
         </div>
         <!-- end profile panel -->
       </section>
-      <section class="col-md-6">
-       <!-- profile panel -->
-        <div class="panel panel-profile">
-            <div class="panel-heading text-center bg-info">
-                <img alt="" src="images/g1.jpg" class="img-circle img80_80">
-                <h3>{{main.name}}</h3>
-                <p>Deer Hunting</p>
-            </div>
-            <div class="list-justified-container">
-                <ul class="list-justified text-center">
-                    <li>
-                        <p class="size-h3 color-success">$269</p>
-                        <p class="text-muted">Person</p>
-                    </li>
-                    <li>
-                        <p class="size-h3">GA</p>
-                        <p class="text-muted">Atlanta</p>
-                    </li>
-                    <!-- <li>
-                        <p class="size-h3">28</p>
-                        <p class="text-muted">Following</p>
-                    </li> -->
-                </ul>
-            </div>
-        </div>
-        <!-- end profile panel -->
-      </section>
-      <section class="col-md-6">
-       <!-- profile panel -->
-        <div class="panel panel-profile">
-            <div class="panel-heading text-center bg-info">
-                <img alt="" src="images/g1.jpg" class="img-circle img80_80">
-                <h3>{{main.name}}</h3>
-                <p>Turkey Hunting</p>
-            </div>
-            <div class="list-justified-container">
-                <ul class="list-justified text-center">
-                    <li>
-                        <p class="size-h3 color-success">$425</p>
-                        <p class="text-muted">Person</p>
-                    </li>
-                    <li>
-                        <p class="size-h3">FL</p>
-                        <p class="text-muted">Merritt Island</p>
-                    </li>
-                    <!-- <li>
-                        <p class="size-h3">41</p>
-                        <p class="text-muted">Following</p>
-                    </li> -->
-                </ul>
-            </div>
-        </div>
-        <!-- end profile panel -->
-      </section>
-      <section class="col-md-6">
-       <!-- profile panel -->
-        <div class="panel panel-profile">
-            <div class="panel-heading text-center bg-info">
-                <img alt="" src="images/g1.jpg" class="img-circle img80_80">
-                <h3>{{main.name}}</h3>
-                <p>Deer Hunting</p>
-            </div>
-            <div class="list-justified-container">
-                <ul class="list-justified text-center">
-                    <li>
-                        <p class="size-h3 color-success">$298</p>
-                        <p class="text-muted">Person</p>
-                    </li>
-                    <li>
-                        <p class="size-h3">OH</p>
-                        <p class="text-muted">Toledo</p>
-                    </li>
-                    <!-- <li>
-                        <p class="size-h3">23</p>
-                        <p class="text-muted">Following</p>
-                    </li> -->
-                </ul>
-            </div>
-        </div>
-        <!-- end profile panel -->
-      </section>
-
-
-    <!-- <section class="panel panel-default">
-        <div class="panel-heading"><strong><span class="glyphicon glyphicon-th"></span> Blank Page</strong></div>
-        <div class="panel-body">
-            <p>Content goes here</p>
-        </div>
-    </section> -->
     </section>
 
 </div>
