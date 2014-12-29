@@ -1,5 +1,12 @@
 <div class="page" toggleOffCanvas>
    <section class="col-md-6">
+   <div class="search-box visible-md visible-lg">
+    <div class="input-group">
+      <span class="input-group-addon"><i class="fa fa-search text-muted"></i></span>
+      <input class="form-control" type="text" class="form-control" ng-model="searchText" placeholder="Search anything here.">
+    </div>
+  </div>
+  <p class="clearfix"></p>
      <section class="panel panel-default">
           <!-- <div class="panel-heading"><strong><span class="glyphicon glyphicon-th"></span> Google Map - Dynamic Map</strong></div> -->
           <div class="panel-body" data-ng-controller="MapDemoCtrl">
