@@ -89,13 +89,21 @@ angular.module('outdoolacomApp')
         templateUrl: 'views/my-adventures.html',
         controller: 'AdventureCtrl'
       })
-      .when('/explore', {
+      .when('/search', {
         templateUrl: 'views/explore.html',
         controller: 'AdventureCtrl'
       })
       .when('/adventures/:adventureId', {
         templateUrl: 'views/show-adventure.html',
         controller: 'ShowAdventureCtrl'
+      })
+      .when('/explore', {
+        templateUrl: 'views/explore-more.html',
+        controller: 'AdventureCtrl'
+      })
+      .when('/your-adventures', {
+        templateUrl: 'views/your-adventures.html',
+        controller: 'AdventureCtrl'
       })
       .otherwise({redirectTo: '/'});
   }])

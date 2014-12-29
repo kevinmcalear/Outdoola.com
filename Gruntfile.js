@@ -33,6 +33,10 @@ module.exports = function (grunt) {
         files: ['bower.json'],
         tasks: ['wiredep']
       },
+      coffee: {
+        files: ["<%= yeoman.app %>/scripts/**/*.coffee"],
+        tasks: ["coffee:dist"]
+      },
       js: {
         files: ['<%= yeoman.app %>/scripts/{,*/}*.js'],
         tasks: ['newer:jshint:all'],
@@ -57,6 +61,7 @@ module.exports = function (grunt) {
         },
         files: [
           '<%= yeoman.app %>/{,*/}*.html',
+          '<%= yeoman.app %>/views/**/*.html',
           '.tmp/styles/{,*/}*.css',
           '<%= yeoman.app %>/images/{,*/}*.{png,jpg,jpeg,gif,webp,svg}'
         ]
@@ -201,6 +206,40 @@ module.exports = function (grunt) {
         options: {
           debugInfo: true
         }
+      }
+    },
+
+    // Compiles Coffee to JavaScript and generates necessary files if requested
+    coffee: {
+      server: {
+        options: {
+          sourceMap: true,
+          sourceRoot: ""
+        },
+        files: [
+          {
+            expand: true,
+            cwd: "<%= yeoman.app %>/scripts",
+            src: "**/*.coffee",
+            dest: ".tmp/scripts",
+            ext: ".js"
+          }
+        ]
+      },
+      dist: {
+        options: {
+          sourceMap: false,
+          sourceRoot: ""
+        },
+        files: [
+          {
+            expand: true,
+            cwd: "<%= yeoman.app %>/scripts",
+            src: "**/*.coffee",
+            dest: ".tmp/scripts",
+            ext: ".js"
+          }
+        ]
       }
     },
 

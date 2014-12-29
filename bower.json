@@ -32,7 +32,10 @@
     "textAngular": "1.2.1",
     "angular-ui-tree": "~2.0.3",
     "ng-tags-input": "~2.1.1",
-    "angular-loading-bar": "~0.6.0"
+    "flot": "~0.8.3",
+    "flot.tooltip": "~0.8.0",
+    "angular-loading-bar": "~0.6.0",
+    "morris.js": "~0.5.1"
   },
   "devDependencies": {
     "angular-mocks": "1.2.16",

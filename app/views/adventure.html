@@ -1,4 +1,3 @@
-
 <!-- Temporaraly using this for the dropdown template -->
 <script type="text/ng-template" id="customTemplate.html">
   <a>
@@ -6,103 +5,63 @@
       <span bind-html-unsafe="match.label | typeaheadHighlight:query"></span>
   </a>
 </script>
+<div class="page">
 
-<h3>Add A New Adventure.</h3>
-<div class="panel panel-default">
-  <div class="panel-body">
-    <form role="form">
-      <div class="form-group">
-        <label for="adventureName">Adventure's Name</label>
-        <input class="form-control required" id="adventureName" placeholder="Name" ng-model="newAdventure.name">
-      </div>
-      <div class="form-group">
-        <label for="adventureName">Adventure's Location</label>
-        <input type="text" ng-model="newAdventure.location" placeholder="Start Typing The Address" typeahead="address for address in getLocation($viewValue)" typeahead-loading="loadingLocations" class="form-control">
-        <i ng-show="loadingLocations" class="glyphicon glyphicon-refresh"></i>
-      </div>
-
-      <div class="form-group">
-        <label for="adventureDescription">Description</label>
-        <textarea class="form-control required" id="adventureDescription" placeholder="Description" ng-model="newAdventure.description" rows="3"></textarea>
-      </div>
-      <div class="form-group">
-        <label for="adventurePrice">Price Per Person</label>
-      <input
-        type="number"
-        name="currency"
-        min="0"
-        max="9999"
-        step="0.01"
-        size="4"
-        title="CDA Currency Format - no dollar sign and no comma(s) - cents (.##) are optional"
-        class="form-control required"
-        id="adventurePrice"
-        placeholder="$00.00"
-        ng-model="newAdventure.price">
-      </div>
-      <div class="form-group">
-        <label for="exampleInputFile">Upload A Picture</label>
-        <input type="file" id="exampleInputFile" ng-model="newAdventure.picture" base-sixty-four-input>
-        <p class="help-block">Select a picture to represent your Adventure.</p>
-        Image Preview: <br>
-        <img class="img-responsive img-thumbnail" ng-if="newAdventure.picture" ng-src="data:{{newAdventure.picture.filetype}};base64,{{newAdventure.picture.base64}}" alt="">
-      </div>
-      <div class="form-group">
-        <label for="adventureSize">Adventure Size</label>
-        <select id="adventureSize" class="form-control required" ng-model="newAdventure.size">
-          <option value="" disabled selected>Choose The Number Of People</option>
-          <option value='1'>1 Person</option>
-          <option value='2'>2 People</option>
-          <option value='3'>3 People</option>
-          <option value='4'>4 People</option>
-          <option value='5'>5 People</option>
-        </select>
-      </div>
-      <button type="submit" class="btn btn-default btn-primary" ng-click="addAdventure(newAdventure);newAdventure = null;">Add Your New Adventure</button>
-    </form>
-  </div>
-</div>
-<br>
-<br>
-
-
-<h3>Your Hosted Adventures.</h3>
-<hr>
-<div ng-repeat="adventure in adventures | reverse" class="panel panel-default" ng-show="user.uid == adventure.text.owner.uid" >
-  <form editable-form onaftersave="adventures.$save(adventure)" name="editableForm">
-    <div class="clearfix panel-heading">
-      <h3 class="panel-title"><a ng-href="#/adventures/{{adventure.$id}}"><a href="" editable-text="adventure.text.name">{{adventure.text.name}}</a></a></h3>
-      <div class="pull-right">
-        <span ng-show="editableForm.$visible">
-          <button type="submit" class="btn btn-primary" ng-disabled="editableForm.$waiting">
-            Save
-          </button>
-          <button type="button" class="btn btn-default" ng-disabled="editableForm.$waiting" ng-click="editableForm.$cancel()">
-            Cancel
-          </button>
-        </span>
-        <button type="button" class="btn btn-primary" ng-click="editableForm.$show()" ng-show="!editableForm.$visible"><span class="glyphicon glyphicon-cog"> <strong>Edit</strong></button>&nbsp;
-        <button type="button" class="btn btn-danger" ng-click="adventures.$remove(adventure)"><span class="glyphicon glyphicon-remove"> <strong>Delete</strong></button>
-      </div>
-    </div>
+  <h3>Add A New Adventure.</h3>
+  <div class="panel panel-default">
     <div class="panel-body">
-      <div class="col-xs-6">
-      <p>Price: <strong>$<a href="" editable-text="adventure.text.price">{{adventure.text.price}}</a></strong> / Person</p>
-      <img ng-if="adventure.text.picture" class="img-responsive img-thumbnail" ng-src="data:{{adventure.text.picture.filetype}};base64,{{adventure.text.picture.base64}}">
-      <!-- {{adventure.picture.filetype}};base64,{{adventure.picture.base64}} -->
-      <!-- {{adventure.price}} -->
-      </div>
-      <div class="col-xs-6">
-        <p><strong>What You're Getting Into:</strong></p>
-        <p><a href="" editable-textarea="adventure.text.description">{{adventure.text.description}}</a></p>
-        <p ng-show="adventure.text.size.length >= 1"><strong>This Adventure Books:</strong></p>
-        <p ng-show="adventure.text.size.length >= 1">{{adventure.text.size == '1' ? adventure.text.size + " Person": adventure.text.size + " People" }}</p>
-        <map ng-show="{{ adventure.text.location.length >= 1 }}" center="encodeAddress( {{ adventure.text.location }} );" zoom="12" map-type-id="TERRAIN" disable-default-u-i="true">
-          <marker position="encodeAddress( {{ adventure.text.location }} );" icon="//s3.amazonaws.com/outdoola/marker.png"></marker>
-        </map>
-      </div>
+      <form role="form">
+        <div class="form-group">
+          <label for="adventureName">Adventure's Name</label>
+          <input class="form-control required" id="adventureName" placeholder="Name" ng-model="newAdventure.name">
+        </div>
+        <div class="form-group">
+          <label for="adventureName">Adventure's Location</label>
+          <input type="text" ng-model="newAdventure.location" placeholder="Start Typing The Address" typeahead="address for address in getLocation($viewValue)" typeahead-loading="loadingLocations" class="form-control">
+          <i ng-show="loadingLocations" class="glyphicon glyphicon-refresh"></i>
+        </div>
+
+        <div class="form-group">
+          <label for="adventureDescription">Description</label>
+          <textarea class="form-control required" id="adventureDescription" placeholder="Description" ng-model="newAdventure.description" rows="3"></textarea>
+        </div>
+        <div class="form-group">
+          <label for="adventurePrice">Price Per Person</label>
+        <input
+          type="number"
+          name="currency"
+          min="0"
+          max="9999"
+          step="0.01"
+          size="4"
+          title="CDA Currency Format - no dollar sign and no comma(s) - cents (.##) are optional"
+          class="form-control required"
+          id="adventurePrice"
+          placeholder="$00.00"
+          ng-model="newAdventure.price">
+        </div>
+        <div class="form-group">
+          <label for="exampleInputFile">Upload A Picture</label>
+          <input type="file" id="exampleInputFile" ng-model="newAdventure.picture" base-sixty-four-input>
+          <p class="help-block">Select a picture to represent your Adventure.</p>
+          Image Preview: <br>
+          <img class="img-responsive img-thumbnail" ng-if="newAdventure.picture" ng-src="data:{{newAdventure.picture.filetype}};base64,{{newAdventure.picture.base64}}" alt="">
+        </div>
+        <div class="form-group">
+          <label for="adventureSize">Adventure Size</label>
+          <select id="adventureSize" class="form-control required" ng-model="newAdventure.size">
+            <option value="" disabled selected>Choose The Number Of People</option>
+            <option value='1'>1 Person</option>
+            <option value='2'>2 People</option>
+            <option value='3'>3 People</option>
+            <option value='4'>4 People</option>
+            <option value='5'>5 People</option>
+          </select>
+        </div>
+        <button type="submit" class="btn btn-default btn-primary" ng-click="addAdventure(newAdventure);newAdventure = null;">Add Your New Adventure</button>
+      </form>
     </div>
-  </form>
+  </div>
 </div>
 
 
@@ -120,3 +79,62 @@
   </form>
 </div>
  -->
+
+
+
+
+<div class="page" data-ng-controller="AdventureCtrl">
+
+    <section class="panel panel-default">
+       <!--  <div class="panel-heading"><strong><span class="glyphicon glyphicon-globe"></span> Hosting Your New Adventure</strong></div> -->
+        <div class="panel-body">
+            <div data-ui-wizard-form>
+                <h1>&nbsp;&nbsp;&nbsp;&nbsp;When Is Your Adventure?</h1>
+                <div>
+                    <h4>List Your Adventure's Availability.</h4>
+                    <div class="panel-body">
+                        <dl class="dl-horizontal">
+                            <dt>Availablity</dt>
+                            <dd>
+                                <label class="ui-radio"><input name="radio1" type="radio" value="option1" ><span>Always</span></label>
+                                <label class="ui-radio"><input name="radio1" type="radio" value="option2" checked><span>Sometimes</span></label>
+                                <label class="ui-radio"><input name="radio1" type="radio" value="option3"><span>One Time</span></label>
+
+                                <timepicker class="ui-timepicker" hour-step="hstep" minute-step="mstep" show-meridian="ismeridian"></timepicker>
+                            </dd>
+                        </dl>
+                    </div>
+                </div>
+
+                <h1>&nbsp;&nbsp;&nbsp;&nbsp;How Much Is Your Adventure?</h1>
+                <div>
+                    <h4>List Your Adventure's Cost.</h4>
+                    <div class="input-group">
+                        <span class="input-group-addon">$</span>
+                        <input type="text" class="form-control">
+                        <span class="input-group-addon">/ Person</span>
+                    </div>
+                    <h4>For How Long?</h4>
+                    <span class="ui-select">
+                        <select>
+                            <option value="Mustard">1/2 hour</option>
+                            <option value="Ketchup">1 hour</option>
+                            <option value="Barbecue">2 hours</option>
+                            <option value="Barbecue">3 hours</option>
+                            <option value="Barbecue">1/2 day</option>
+                            <option value="Barbecue">all day</option>
+                        </select>
+                    </span>
+                </div>
+
+                <h1>&nbsp;&nbsp;&nbsp;&nbsp;Your Adventure's Details</h1>
+                <div>
+                <input type="text" class="form-control" placeholder="Your Adventure's Title">
+                <textarea name="" id="" class="form-control" rows="4" placeholder="The Summary of Your Adventure."></textarea>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+</div>

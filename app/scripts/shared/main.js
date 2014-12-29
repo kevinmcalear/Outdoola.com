@@ -5,7 +5,7 @@
       var $window;
       $window = $(window);
       $scope.main = {
-        brand: 'Rainbow',
+        brand: 'Outdoola',
         name: 'Lisa Doe'
       };
       $scope.pageTransitionOpts = [
@@ -62,7 +62,19 @@
         danger: '#E9422E'
       };
     }
-  ]).controller('HeaderCtrl', ['$scope', function($scope) {}]).controller('NavContainerCtrl', ['$scope', function($scope) {}]).controller('NavCtrl', [
+  ]).controller('HeaderCtrl', ['$scope', 'simpleLogin', 'fbutil', function($scope, simpleLogin, fbutil, user, userProvider) {
+
+    // $scope.user = user;
+    // loadProfile(user);
+
+    function loadProfile(user) {
+      if( $scope.profile ) {
+        $scope.profile.$destroy();
+      }
+      fbutil.syncObject('users/'+user.uid).$bindTo($scope, 'profile');
+    }
+
+  }]).controller('NavContainerCtrl', ['$scope', function($scope) {}]).controller('NavCtrl', [
     '$scope', 'taskStorage', 'filterFilter', function($scope, taskStorage, filterFilter) {
       var tasks;
       tasks = $scope.tasks = taskStorage.get();
