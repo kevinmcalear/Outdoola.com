@@ -8,7 +8,7 @@
  * Controller of the outdoolacomApp
  */
 angular.module('outdoolacomApp')
-  .controller('MainCtrl', function ($scope, $rootScope, simpleLogin) {
+  .controller('MainCtrl', [ '$scope', '$rootScope', 'simpleLogin', function ($scope, $rootScope, simpleLogin) {
     $scope.awesomeThings = [
       'HTML5 Boilerplate',
       'AngularJS',
@@ -19,4 +19,4 @@ angular.module('outdoolacomApp')
     // console.log($scope.logout)
     // console.log('hi')
 
-  });
+  }]);

@@ -7,7 +7,7 @@
  * Provides rudimentary account management functions.
  */
 angular.module('outdoolacomApp')
-  .controller('AccountCtrl', function ($scope, user, simpleLogin, fbutil, $timeout) {
+  .controller('AccountCtrl', [ '$scope', 'user', 'simpleLogin', 'fbutil', '$timeout', function ($scope, user, simpleLogin, fbutil, $timeout) {
     $scope.user = user;
     $scope.logout = simpleLogin.logout;
     $scope.messages = [];
@@ -61,4 +61,4 @@ angular.module('outdoolacomApp')
       }
       fbutil.syncObject('users/'+user.uid).$bindTo($scope, 'profile');
     }
-  });
+  }]);

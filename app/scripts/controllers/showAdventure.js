@@ -9,7 +9,7 @@
  */
 
 angular.module('outdoolacomApp')
-  .controller('ShowAdventureCtrl', function ($scope, $routeParams, $firebase) {
+  .controller('ShowAdventureCtrl', [ '$scope', '$routeParams', '$firebase', function ($scope, $routeParams, $firebase) {
 
     var ref = new Firebase('https://outdoola1.firebaseio.com/adventures/'+$routeParams.adventureId)
     $scope.adventure = $firebase(ref).$asObject();
@@ -40,4 +40,4 @@ angular.module('outdoolacomApp')
       });
     }
 
-  });
+  }]);

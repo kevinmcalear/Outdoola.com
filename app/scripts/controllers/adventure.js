@@ -8,7 +8,7 @@
  * Controller of the outdoolacomApp
  */
 angular.module('outdoolacomApp')
-  .controller('AdventureCtrl', function ($scope, $window, simpleLogin, fbutil, $timeout, $http, $log) {
+  .controller('AdventureCtrl', [ '$scope', '$window', 'simpleLogin', 'fbutil', '$timeout', '$http', '$log', function ($scope, $window, simpleLogin, fbutil, $timeout, $http, $log) {
 
     // Filling in our User
     simpleLogin.getUser().then(function(user) {
@@ -119,4 +119,4 @@ angular.module('outdoolacomApp')
       });
     };
 
-  });
+  }]);
