@@ -1,13 +1,13 @@
 
 // Shared variables and mixins
-@import 
+@import
     "global/var"                        // global variables
 ,   "bootstrap/bootstrap/mixins"        // Bootstrap mixins
 ,   "bourbon/bourbon"                   // mixins
 ;
 
 
-@import 
+@import
     // Plugins, overrides plugins' style
     "plugins/bootstrap-slider"
 ,   "plugins/responsive-tables"
@@ -44,3 +44,8 @@
 ,   "sections/header"
 ,   "sections/body"
 ;
+
+// Min Height Class
+.min-300 {
+  min-height: 300px;
+}
