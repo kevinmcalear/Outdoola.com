@@ -1,10 +1,10 @@
 <div class="page">
   <h3>Your Hosted Adventures.</h3>
   <hr>
-  <div ng-repeat="adventure in adventures | reverse" class="panel panel-default" ng-show="user.uid == adventure.text.owner.uid" >
+  <div ng-repeat="adventure in adventures | reverse" class="panel panel-default col-md-6" ng-show="user.uid == adventure.text.owner.uid" >
     <form editable-form onaftersave="adventures.$save(adventure)" name="editableForm">
       <div class="clearfix panel-heading">
-        <h3 class="panel-title"><a ng-href="#/adventures/{{adventure.$id}}"><a href="" editable-text="adventure.text.name">{{adventure.text.name}}</a></a></h3>
+        <h3 class="panel-title"><a href="" editable-text="adventure.text.name">{{adventure.text.name}}</a></h3>
         <div class="pull-right">
           <span ng-show="editableForm.$visible">
             <button type="submit" class="btn btn-primary" ng-disabled="editableForm.$waiting">
@@ -14,16 +14,18 @@
               Cancel
             </button>
           </span>
-          <button type="button" class="btn btn-primary" ng-click="editableForm.$show()" ng-show="!editableForm.$visible"><span class="glyphicon glyphicon-cog"> <strong>Edit</strong></button>&nbsp;
-          <button type="button" class="btn btn-danger" ng-click="adventures.$remove(adventure)"><span class="glyphicon glyphicon-remove"> <strong>Delete</strong></button>
+          <button type="button" class="btn btn-primary" ng-click="editableForm.$show()" ng-show="!editableForm.$visible">
+            <span class="glyphicon glyphicon-cog"> <strong>Edit</strong>
+          </button>&nbsp;
+          <button type="button" class="btn btn-danger" ng-click="adventures.$remove(adventure)">
+            <span class="glyphicon glyphicon-remove"> <strong>Delete</strong>
+          </button>
         </div>
       </div>
       <div class="panel-body">
         <div class="col-xs-6">
-        <p>Price: <strong>$<a href="" editable-text="adventure.text.price">{{adventure.text.price}}</a></strong> / Person</p>
-        <img ng-if="adventure.text.picture" class="img-responsive img-thumbnail" ng-src="data:{{adventure.text.picture.filetype}};base64,{{adventure.text.picture.base64}}">
-        <!-- {{adventure.picture.filetype}};base64,{{adventure.picture.base64}} -->
-        <!-- {{adventure.price}} -->
+          <p>Price: <strong>$<a href="" editable-text="adventure.text.price">{{adventure.text.price}}</a></strong> / Person</p>
+          <img ng-if="adventure.text.picture" class="img-responsive img-thumbnail" ng-src="data:{{adventure.text.picture.filetype}};base64,{{adventure.text.picture.base64}}">
         </div>
         <div class="col-xs-6">
           <p><strong>What You're Getting Into:</strong></p>

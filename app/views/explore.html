@@ -19,7 +19,7 @@
       <div class="col-xs-6">
       <p>Price: <strong>${{adventure.text.price}}</strong> / Person</p>
       <img ng-if="adventure.text.picture"  class="img-responsive img-thumbnail" ng-src="data:{{adventure.text.picture.filetype}};base64,{{adventure.text.picture.base64}}">
-      <p><strong>Host:</strong> {{adventure.text.owner.email}}</p>
+      <p><strong>Host:<a ng-href="#/profiles/{{adventure.text.owner.uid}}"></strong> View Profile</a></p>
       <button type="button" class="btn btn-danger btn-lg btn-block">Book Adventure</button>
       </div>
       <div class="col-xs-6">

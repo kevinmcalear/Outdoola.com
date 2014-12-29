@@ -11,15 +11,21 @@
             <div class="form-container">
             <form role="form" class="form-horizontal">
               <div class="form-group">
-                <label for="loginEmail">email</label>
+                <div class="btn-icon-lined btn-icon-round btn-icon-sm btn-default-light">
+                    <span class="glyphicon glyphicon-envelope"></span>
+                </div>
                 <input id="loginEmail" required name="email" type="email" ng-model="email" class="form-control input-lg input-round text-center" placeholder="example@email.com" />
               </div>
               <div class="form-group">
-                <label for="loginPass">password</label>
+                <div class="btn-icon-lined btn-icon-round btn-icon-sm btn-default-light">
+                    <span class="glyphicon glyphicon-lock"></span>
+                </div>
                 <input id="loginPass" required name="pass" type="password" ng-model="pass" class="form-control input-lg input-round text-center" placeholder="Password" />
               </div>
               <div class="form-group" ng-cloak ng-show="createMode">
-                <label for="loginConfirm">confirm pass</label>
+                <div class="btn-icon-lined btn-icon-round btn-icon-sm btn-default-light">
+                    <span class="glyphicon glyphicon-lock"></span>
+                </div>
                 <input id="loginConfirm" required name="confirm" type="password" ng-model="confirm" class="form-control input-lg input-round text-center" placeholder="Confirm Password" />
               </div>
 

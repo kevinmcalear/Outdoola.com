@@ -105,6 +105,14 @@ angular.module('outdoolacomApp')
         templateUrl: 'views/your-adventures.html',
         controller: 'AdventureCtrl'
       })
+      .whenAuthenticated('/my-profile', {
+        templateUrl: 'views/pages/profile.html',
+        controller: 'AccountCtrl'
+      })
+      .when('/profiles/:userId', {
+        templateUrl: 'views/pages/profile.html',
+        controller: 'ShowProfileCtrl'
+      })
       .otherwise({redirectTo: '/'});
   }])
 
