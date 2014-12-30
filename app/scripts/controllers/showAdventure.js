@@ -24,7 +24,7 @@ angular.module('outdoolacomApp')
     $scope.addReview = function(newReview) {
       if( newReview ) {
         // push a message to the end of the array
-        $scope.reviews.$add({text: newReview, reviewer: $scope.profile, adventure: $scope.adventure})
+        $scope.reviews.$add({text: newReview.text, rating: newReview.rating, reviewer: $scope.profile, adventureId: $scope.adventure.$id})
         // display any errors
         .catch(alert);
       }
