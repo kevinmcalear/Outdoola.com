@@ -9,8 +9,10 @@
   <p class="clearfix"></p>
      <section class="panel panel-default">
           <!-- <div class="panel-heading"><strong><span class="glyphicon glyphicon-th"></span> Google Map - Dynamic Map</strong></div> -->
-          <div class="panel-body" data-ng-controller="MapDemoCtrl">
-              <map class="ui-map" zoom="3" center="[37.7034225,-93.8400607]" map-type-id="TERRAIN" disable-default-u-i="true"></map>
+          <div class="panel-body">
+              <map class="ui-map" zoom="3" center="[37.7034225,-93.8400607]" map-type-id="TERRAIN" disable-default-u-i="true">
+                <marker ng-repeat="adventure in adventures | reverse | filter:searchText" position="encodeAddress( {{ adventure.text.location }} );" icon="//s3.amazonaws.com/outdoola/marker.png"></marker>
+              </map>
           </div>
       </section>
       <section class="panel panel-default">
@@ -107,7 +109,7 @@
       </section>
    </section>
    <section class="col-md-6">
-      <section ng-repeat="adventure in adventures | reverse | filter:searchText" class="col-md-6 min-300">
+      <section ng-repeat="adventure in adventures | reverse | filter:searchText" class="col-md-6 min-400">
         <!-- profile panel -->
         <div class="panel panel-profile">
           <div class="panel-heading text-center bg-info">

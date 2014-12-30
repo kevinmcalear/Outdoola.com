@@ -68,9 +68,6 @@
 
       <div class="clearfix"></div>
       <div class="panel panel-default" ng-if="view=='review'">
-        <div class="clearfix panel-heading">
-          <!-- <h3 class="panel-title"><a ng-href="#/adventures/{{adventure.$id}}">{{adventure.text.name}}</a></h3> -->
-        </div>
         <div class="panel-body">
          <h1>Reviews</h1>
         </div>
@@ -78,9 +75,6 @@
 
       <div class="clearfix"></div>
       <div class="panel panel-default" ng-if="view=='photos'">
-        <div class="clearfix panel-heading">
-          <!-- <h3 class="panel-title"><a ng-href="#/adventures/{{adventure.$id}}">{{adventure.text.name}}</a></h3> -->
-        </div>
         <div class="panel-body">
           <h1>Photos</h1>
           <img ng-if="adventure.text.picture"  class="img-responsive img-thumbnail" ng-src="data:{{adventure.text.picture.filetype}};base64,{{adventure.text.picture.base64}}">
@@ -89,9 +83,6 @@
 
       <div class="clearfix"></div>
       <div class="panel panel-default" ng-if="view=='map'">
-        <div class="clearfix panel-heading">
-          <!-- <h3 class="panel-title"><a ng-href="#/adventures/{{adventure.$id}}">{{adventure.text.name}}</a></h3> -->
-        </div>
         <div class="panel-body">
           <h1>Map</h1>
           <p>{{ adventure.text.location }}</p>
@@ -103,9 +94,6 @@
 
       <div class="clearfix"></div>
       <div class="panel panel-default" ng-if="view=='contact'">
-        <div class="clearfix panel-heading">
-          <!-- <h3 class="panel-title"><a ng-href="#/adventures/{{adventure.$id}}">{{adventure.text.name}}</a></h3> -->
-        </div>
         <div class="panel-body">
           <div class="col-md-6">
             <h1>{{adventure.text.owner.email}}</h1>
