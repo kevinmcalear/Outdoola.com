@@ -8,7 +8,7 @@
  * Controller of the outdoolacomApp
  */
 angular.module('outdoolacomApp')
-  .controller('AdventureCtrl', [ '$scope', '$window', 'simpleLogin', 'fbutil', '$timeout', '$http', '$log', function ($scope, $window, simpleLogin, fbutil, $timeout, $http, $log) {
+  .controller('AdventureCtrl', [ '$scope', '$window', 'simpleLogin', 'fbutil', '$timeout', '$http', '$log', '$location', function ($scope, $window, simpleLogin, fbutil, $timeout, $http, $log, $location) {
 
     // Filling in our User
     simpleLogin.getUser().then(function(user) {
@@ -35,6 +35,12 @@ angular.module('outdoolacomApp')
           .catch(alert);
       }
     };
+
+    // Have a link to go to a link
+    $scope.toAdventure = function(adventure) {
+      // console.log(adventure);
+      // $location.url('/adventures/');
+    }
 
     // Setting up address dropdown
     $scope.selected = undefined;

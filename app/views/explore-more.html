@@ -11,7 +11,7 @@
           <!-- <div class="panel-heading"><strong><span class="glyphicon glyphicon-th"></span> Google Map - Dynamic Map</strong></div> -->
           <div class="panel-body">
               <map class="ui-map" zoom="3" center="[37.7034225,-93.8400607]" map-type-id="TERRAIN" disable-default-u-i="true">
-                <marker ng-repeat="adventure in adventures | reverse | filter:searchText" position="encodeAddress( {{ adventure.text.location }} );" icon="//s3.amazonaws.com/outdoola/marker.png"></marker>
+                <marker ng-repeat="adventure in adventures | reverse | filter:searchText" position="encodeAddress( {{ adventure.text.location }} );" icon="//s3.amazonaws.com/outdoola/marker.png" on-click="toAdventure({{adventure.$id}})"></marker>
               </map>
           </div>
       </section>
