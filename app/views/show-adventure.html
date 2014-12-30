@@ -1,26 +1,120 @@
-<div class="panel panel-default">
-  <div class="clearfix panel-heading">
-    <h3 class="panel-title"><a ng-href="#/adventures/{{adventure.$id}}">{{adventure.text.name}}</a></h3>
-    <!-- <div class="pull-right">
-      <button type="button" class="btn btn-primary">Edit</button>&nbsp;
-      <button type="button" class="btn btn-danger">Delete</button>
-    </div> -->
-  </div>
-  <div class="panel-body">
-    <div class="col-xs-6">
-    <p>Price: <strong>${{adventure.text.price}}</strong> / Person</p>
-    <img ng-if="adventure.text.picture"  class="img-responsive img-thumbnail" ng-src="data:{{adventure.text.picture.filetype}};base64,{{adventure.text.picture.base64}}">
-    <p><strong>Host:</strong> {{adventure.text.owner.email}}</p>
-    <button type="button" class="btn btn-danger btn-lg btn-block">Book Adventure</button>
+<div class="page">
+  <div class="row">
+    <div class="col-md-6">
+      <div class="panel panel-default">
+        <h1 style="font-size: 40px;
+                   font-heigh: 60px;
+                   margin: 42px 0px;
+                   text-align: center;
+                   font-weight: bolder;
+                   color: rgb(36, 138, 175);">{{adventure.text.name}}</h1>
+      </div>
     </div>
-    <div class="col-xs-6">
-      <p><strong>What You're Getting Into:</strong></p>
-      <p>{{adventure.text.description}}</p>
-      <p ng-show="adventure.text.size.length >= 1"><strong>This Adventure Books:</strong></p>
-      <p ng-show="adventure.text.size.length >= 1">{{adventure.text.size == '1' ? adventure.text.size + " Person": adventure.text.size + " People" }}</p>
-      <map ng-show="{{ adventure.text.location.length >= 1 }}" center="encodeAddress( {{ adventure.text.location }} );" zoom="12" map-type-id="TERRAIN" disable-default-u-i="true">
-        <marker position="encodeAddress( {{ adventure.text.location }} );" icon="//s3.amazonaws.com/outdoola/marker.png"></marker>
-      </map>
+    <div class="col-md-6">
+      <div class="col-md-6">
+          <section class="panel panel-box info-box">
+              <div class="panel-left panel-item bg-info">
+                  <i class="fa fa-ticket text-large stat-icon" style="font-size: 60px;"></i>
+              </div>
+              <div class="panel-right panel-item bg-reverse">
+                  <p class="size-h1 no-margin">132</p>
+                  <p class="text-muted no-margin"><span data-i18n="Bookings">Bookings</span></p>
+              </div>
+          </section>
+      </div>
+
+      <div class="col-md-6">
+          <section class="panel panel-box info-box">
+              <div class="panel-left panel-item bg-success">
+                  <i class="fa fa-dollar text-large stat-icon" style="font-size: 60px;"></i>
+              </div>
+              <div class="panel-right panel-item bg-reverse">
+                  <p class="size-h1 no-margin">${{adventure.text.price}}</p>
+                  <p class="text-muted no-margin"><span data-i18n="Per Person">Per Person</span></p>
+              </div>
+          </section>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+        <ul class="nav nav-boxed nav-justified" ng-init="view='book'">
+            <li><a href="" ng-click="view='book'"><i class="color-success fa fa-ticket"></i> Book Adventure</a></li>
+            <li><a href="" ng-click="view='review'"><i class="color-info fa fa-bookmark"></i> Reviews</a></li>
+            <li><a href="" ng-click="view='photos'"><i class="color-primary fa fa-camera"></i> Photos</a></li>
+            <li><a href="" ng-click="view='map'"><i class="color-info-alt fa fa-map-marker"></i> Map</a></li>
+            <li><a href="" ng-click="view='contact'"><i class="color-gray fa fa-phone-square"></i> Contact Host</a></li>
+        </ul>
+    </div>
+    <div class="col-md-12 clearfix">
+      <div class="divider"></div>
+      <div class="divider"></div>
+      <div class="clearfix"></div>
+      <div class="panel panel-default" ng-if="view=='book'">
+        <div class="panel-body">
+          <div class="col-md-6">
+          <h3>Price: <strong>${{adventure.text.price}}</strong> / Person</h3>
+          <h3><strong>Host:</strong> {{adventure.text.owner.email}}</h3>
+          <h3 ng-show="adventure.text.size.length >= 1"><strong>This Adventure Books:</strong></h3>
+          <h3 ng-show="adventure.text.size.length >= 1">{{adventure.text.size == '1' ? adventure.text.size + " Person": adventure.text.size + " People" }}</h3>
+          </div>
+          <div class="col-md-6">
+            <h3><strong>What You're Getting Into:</strong></h3>
+            <p>{{adventure.text.description}}</p>
+            <button type="button" class="btn btn-danger btn-lg btn-block">Book Adventure</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="clearfix"></div>
+      <div class="panel panel-default" ng-if="view=='review'">
+        <div class="clearfix panel-heading">
+          <!-- <h3 class="panel-title"><a ng-href="#/adventures/{{adventure.$id}}">{{adventure.text.name}}</a></h3> -->
+        </div>
+        <div class="panel-body">
+         <h1>Reviews</h1>
+        </div>
+      </div>
+
+      <div class="clearfix"></div>
+      <div class="panel panel-default" ng-if="view=='photos'">
+        <div class="clearfix panel-heading">
+          <!-- <h3 class="panel-title"><a ng-href="#/adventures/{{adventure.$id}}">{{adventure.text.name}}</a></h3> -->
+        </div>
+        <div class="panel-body">
+          <h1>Photos</h1>
+          <img ng-if="adventure.text.picture"  class="img-responsive img-thumbnail" ng-src="data:{{adventure.text.picture.filetype}};base64,{{adventure.text.picture.base64}}">
+        </div>
+      </div>
+
+      <div class="clearfix"></div>
+      <div class="panel panel-default" ng-if="view=='map'">
+        <div class="clearfix panel-heading">
+          <!-- <h3 class="panel-title"><a ng-href="#/adventures/{{adventure.$id}}">{{adventure.text.name}}</a></h3> -->
+        </div>
+        <div class="panel-body">
+          <h1>Map</h1>
+          <p>{{ adventure.text.location }}</p>
+          <map ng-show="{{ adventure.text.location.length >= 1 }}" center="encodeAddress( {{ adventure.text.location }} );" zoom="12" map-type-id="TERRAIN" disable-default-u-i="true">
+            <marker position="encodeAddress( {{ adventure.text.location }} );" icon="//s3.amazonaws.com/outdoola/marker.png"></marker>
+          </map>
+        </div>
+      </div>
+
+      <div class="clearfix"></div>
+      <div class="panel panel-default" ng-if="view=='contact'">
+        <div class="clearfix panel-heading">
+          <!-- <h3 class="panel-title"><a ng-href="#/adventures/{{adventure.$id}}">{{adventure.text.name}}</a></h3> -->
+        </div>
+        <div class="panel-body">
+          <div class="col-md-6">
+            <h1>{{adventure.text.owner.email}}</h1>
+          </div>
+          <div class="col-md-6">
+            <a ng-href="#/profiles/{{adventure.text.owner.uid}}" class="btn btn-default btn-lg">View Owner's Profile</a>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </div>

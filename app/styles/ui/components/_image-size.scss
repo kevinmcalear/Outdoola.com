@@ -9,6 +9,10 @@ img {
     }
     &.img80_80 {
         width: 80px;
-        height: 80px;        
+        height: 80px;
+    }
+    &.fill {
+        width: 100%;
+        height: 100%;
     }
 }

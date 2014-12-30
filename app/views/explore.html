@@ -7,29 +7,31 @@
     </div>
   </div>
   <p class="clearfix"></p>
-  <div ng-repeat="adventure in adventures | reverse | filter:searchText" class="panel panel-default">
-    <div class="clearfix panel-heading">
-      <h3 class="panel-title"><a ng-href="#/adventures/{{adventure.$id}}">{{adventure.text.name}}</a></h3>
-      <!-- <div class="pull-right">
-        <button type="button" class="btn btn-primary">Edit</button>&nbsp;
-        <button type="button" class="btn btn-danger">Delete</button>
-      </div> -->
-    </div>
-    <div class="panel-body">
-      <div class="col-xs-6">
-      <p>Price: <strong>${{adventure.text.price}}</strong> / Person</p>
-      <img ng-if="adventure.text.picture"  class="img-responsive img-thumbnail" ng-src="data:{{adventure.text.picture.filetype}};base64,{{adventure.text.picture.base64}}">
-      <p><strong>Host:<a ng-href="#/profiles/{{adventure.text.owner.uid}}"></strong> View Profile</a></p>
-      <button type="button" class="btn btn-danger btn-lg btn-block">Book Adventure</button>
+  <div ng-repeat="adventure in adventures | reverse | filter:searchText"  class="col-md-6">
+    <div class="panel panel-default">
+      <div class="clearfix panel-heading">
+        <h3 class="panel-title"><a ng-href="#/adventures/{{adventure.$id}}">{{adventure.text.name}}</a></h3>
+        <!-- <div class="pull-right">
+          <button type="button" class="btn btn-primary">Edit</button>&nbsp;
+          <button type="button" class="btn btn-danger">Delete</button>
+        </div> -->
       </div>
-      <div class="col-xs-6">
-        <p><strong>What You're Getting Into:</strong></p>
-        <p>{{adventure.text.description}}</p>
-        <p ng-show="adventure.text.size.length >= 1"><strong>This Adventure Books:</strong></p>
-        <p ng-show="adventure.text.size.length >= 1">{{adventure.text.size == '1' ? adventure.text.size + " Person": adventure.text.size + " People" }}</p>
-        <map ng-show="{{ adventure.text.location.length >= 1 }}" center="encodeAddress( {{ adventure.text.location }} );" zoom="12" map-type-id="TERRAIN" disable-default-u-i="true">
-          <marker position="encodeAddress( {{ adventure.text.location }} );" icon="//s3.amazonaws.com/outdoola/marker.png"></marker>
-        </map>
+      <div class="panel-body">
+        <div class="col-xs-6">
+        <p>Price: <strong>${{adventure.text.price}}</strong> / Person</p>
+        <img ng-if="adventure.text.picture"  class="img-responsive img-thumbnail" ng-src="data:{{adventure.text.picture.filetype}};base64,{{adventure.text.picture.base64}}">
+        <p><strong>Host:<a ng-href="#/profiles/{{adventure.text.owner.uid}}"></strong> View Profile</a></p>
+        <button type="button" class="btn btn-danger btn-lg btn-block">Book Adventure</button>
+        </div>
+        <div class="col-xs-6">
+          <p><strong>What You're Getting Into:</strong></p>
+          <p>{{adventure.text.description}}</p>
+          <p ng-show="adventure.text.size.length >= 1"><strong>This Adventure Books:</strong></p>
+          <p ng-show="adventure.text.size.length >= 1">{{adventure.text.size == '1' ? adventure.text.size + " Person": adventure.text.size + " People" }}</p>
+          <map ng-show="{{ adventure.text.location.length >= 1 }}" center="encodeAddress( {{ adventure.text.location }} );" zoom="12" map-type-id="TERRAIN" disable-default-u-i="true">
+            <marker position="encodeAddress( {{ adventure.text.location }} );" icon="//s3.amazonaws.com/outdoola/marker.png"></marker>
+          </map>
+        </div>
       </div>
     </div>
   </div>
