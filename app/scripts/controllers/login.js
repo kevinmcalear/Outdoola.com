@@ -7,7 +7,7 @@
  * Manages authentication to any active providers.
  */
 angular.module('outdoolacomApp')
-  .controller('LoginCtrl', [ '$scope', 'simpleLogin', '$location', function ($scope, simpleLogin, $location) {
+  .controller('LoginCtrl', [ '$scope', 'simpleLogin', '$location', '$window', function ($scope, simpleLogin, $location, $window) {
     $scope.passwordLogin = function(email, pass) {
       login('password', {
         email: email,
@@ -39,6 +39,8 @@ angular.module('outdoolacomApp')
       simpleLogin.login(provider, opts).then(
         function() {
           $location.path('/account');
+          // $route.reload();
+          $window.location.reload();
         },
         function(err) {
           $scope.err = err;

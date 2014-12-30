@@ -71,7 +71,14 @@ angular.module('outdoolacomApp')
         templateUrl: 'views/chat.html',
         controller: 'ChatCtrl'
       })
-
+      .when('/about', {
+        templateUrl: 'views/about.html',
+        controller: 'MainCtrl'
+      })
+      .when('/contact', {
+        templateUrl: 'views/contact.html',
+        controller: 'MainCtrl'
+      })
       .whenAuthenticated('/account', {
         templateUrl: 'views/account.html',
         controller: 'AccountCtrl'

@@ -11,7 +11,7 @@
           <!-- <div class="panel-heading"><strong><span class="glyphicon glyphicon-th"></span> Google Map - Dynamic Map</strong></div> -->
           <div class="panel-body">
               <map class="ui-map" zoom="3" center="[37.7034225,-93.8400607]" map-type-id="TERRAIN" disable-default-u-i="true">
-                <marker ng-repeat="adventure in adventures | reverse | filter:searchText" position="encodeAddress( {{ adventure.text.location }} );" icon="//s3.amazonaws.com/outdoola/marker.png" on-click="toAdventure({{adventure.$id}})"></marker>
+                <marker ng-repeat="adventure in adventures | reverse | filter:searchText" position="encodeAddress( {{ adventure.location }} );" icon="//s3.amazonaws.com/outdoola/marker.png" on-click="toAdventure({{adventure.$id}})"></marker>
               </map>
           </div>
       </section>
@@ -113,19 +113,21 @@
         <!-- profile panel -->
         <div class="panel panel-profile">
           <div class="panel-heading text-center bg-info">
-            <img alt="" ng-if="adventure.text.picture" ng-src="data:{{adventure.text.picture.filetype}};base64,{{adventure.text.picture.base64}}" class="img-circle img80_80">
-            <h3><a ng-href="#/adventures/{{adventure.$id}}">{{adventure.text.name}}</a></h3>
-            <p ng-show="adventure.text.size.length >= 1">{{adventure.text.size == '1' ? adventure.text.size + " Person": adventure.text.size + " People" }}</p>
+            <a ng-href="#/profiles/{{adventure.owner.id}}">
+              <img alt="" ng-if="adventure.picture" ng-src="data:{{adventure.owner.picture.filetype}};base64,{{adventure.owner.picture.base64}}" class="img-circle img80_80">
+            </a>
+            <h3><a ng-href="#/adventures/{{adventure.$id}}">{{adventure.name}}</a></h3>
+            <p ng-show="adventure.size.length >= 1">{{adventure.size == '1' ? adventure.size + " Person": adventure.size + " People" }}</p>
           </div>
           <div class="list-justified-container">
             <ul class="list-justified text-center">
               <li>
-                <p class="size-h3 color-success">${{adventure.text.price}}</p>
+                <p class="size-h3 color-success">${{adventure.price}}</p>
                 <p class="text-muted">Person</p>
               </li>
               <li>
-                <p class="size-h3">{{ adventure.text.location.split(',')[1]}}</p>
-                <p class="text-muted">{{ adventure.text.location.split(',')[0] }}</p>
+                <p class="size-h3">{{ adventure.location.split(',')[1]}}</p>
+                <p class="text-muted">{{ adventure.location.split(',')[0] }}</p>
               </li>
             </ul>
           </div>

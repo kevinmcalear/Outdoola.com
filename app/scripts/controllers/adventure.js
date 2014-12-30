@@ -27,10 +27,12 @@ angular.module('outdoolacomApp')
     // provide a method for adding an adventure
     $scope.addAdventure = function(newAdventure) {
       if( newAdventure ) {
+        // adding in userid
+        $scope.profile.id = $scope.user.uid;
         // add a user to the adventure
-        newAdventure.owner = $scope.user;
+        newAdventure.owner = $scope.profile;
         // push an adventure to the end of the array
-        $scope.adventures.$add( { text: newAdventure } )
+        $scope.adventures.$add( newAdventure )
           // display any errors
           .catch(alert);
       }
@@ -69,47 +71,6 @@ angular.module('outdoolacomApp')
       }, 5000);
     }
 
-
-    // Uploading an image function
-    function ImageUpload($scope, $log) {
-      $scope.upload_image = function (image) {
-        if (!image.valid) return;
-
-        var imagesRef, safename, imageUpload;
-
-        image.isUploading = true;
-        imageUpload = {
-          isUploading: true,
-          data: image.data,
-          thumbnail: image.thumbnail,
-          name: image.filename,
-          author: {
-            provider: $scope.auth.user.provider,
-            id: $scope.auth.user.id
-          }
-        };
-
-        safename = imageUpload.name.replace(/\.|\#|\$|\[|\]|-|\//g, "");
-        imagesRef = new Firebase($scope.firebaseUrl + '/images');
-
-        imagesRef.child(safename).set(imageUpload, function (err) {
-          if (!err) {
-            imagesRef.child(safename).child('isUploading').remove();
-            $scope.$apply(function () {
-              $scope.status = 'Your image "' + image.filename + '" has been successfully uploaded!';
-              if ($scope.uploaded_callback !== undefined) {
-                $scope.uploaded_callback(angular.copy(imageUpload));
-              }
-              image.isUploading = false;
-              image.data = undefined;
-              image.filename = undefined;
-            });
-          }else{
-            $scope.error = 'There was an error while uploading your image: ' + err;
-          }
-        });
-      };
-    }
 
     // Uploading a user's profile
     function loadProfile(user) {

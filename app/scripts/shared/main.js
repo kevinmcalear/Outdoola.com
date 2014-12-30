@@ -62,11 +62,24 @@
         danger: '#E9422E'
       };
     }
-  ]).controller('HeaderCtrl', ['$scope', 'simpleLogin', 'fbutil', function($scope, simpleLogin, fbutil, user, userProvider) {
+  ]).controller('HeaderCtrl', ['$scope', 'simpleLogin', 'fbutil', function ($scope, simpleLogin, fbutil) {
 
-    // $scope.user = user;
-    // loadProfile(user);
+    // setting up our logout
+    $scope.logout = function() {
+      simpleLogin.logout();
+    };
 
+    // Filling in our User
+    simpleLogin.getUser().then(function(user) {
+      $scope.user = user;
+      user = user;
+      // Loading up this User's Profile
+      if(user) {
+        loadProfile(user);
+      }
+    });
+
+    // Uploading a user's profile
     function loadProfile(user) {
       if( $scope.profile ) {
         $scope.profile.$destroy();
