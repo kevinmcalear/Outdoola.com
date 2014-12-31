@@ -31,6 +31,8 @@ angular.module('outdoolacomApp')
         $scope.profile.id = $scope.user.uid;
         // add a user to the adventure
         newAdventure.owner = $scope.profile;
+        // setting the default booked value to false;
+        newAdventure.booked = false;
         // push an adventure to the end of the array
         $scope.adventures.$add( newAdventure )
           // display any errors

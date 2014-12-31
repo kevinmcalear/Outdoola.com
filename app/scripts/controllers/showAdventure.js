@@ -23,8 +23,31 @@ angular.module('outdoolacomApp')
     // provide a method for adding a message
     $scope.addReview = function(newReview) {
       if( newReview ) {
+        // Adding in id to profile
+        $scope.profile.id = $scope.user.uid;
         // push a message to the end of the array
         $scope.reviews.$add({text: newReview.text, rating: newReview.rating, reviewer: $scope.profile, adventureId: $scope.adventure.$id})
+        // display any errors
+        .catch(alert);
+      }
+    };
+
+    // synchronize a read-only, synchronized array of reviews, limit to most recent 10
+    $scope.bookings = fbutil.syncArray('bookings', {limit: 10});
+
+    // display any errors
+    $scope.bookings.$loaded().catch(alert);
+
+    // provide a method for adding a message
+    $scope.addBooking = function() {
+      if( !$scope.adventure.booked ) {
+        // Updating booked adventure
+        $scope.adventure.booked = true;
+        $scope.adventure.$save();
+        // Adding in id to profile
+        $scope.profile.id = $scope.user.uid;
+        // push a message to the end of the array
+        $scope.bookings.$add({adventure: $scope.adventure, booker: $scope.profile})
         // display any errors
         .catch(alert);
       }

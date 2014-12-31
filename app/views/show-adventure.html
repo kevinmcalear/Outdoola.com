@@ -61,7 +61,7 @@
           <div class="col-md-6">
             <h3><strong>What You're Getting Into:</strong></h3>
             <p>{{adventure.description}}</p>
-            <button type="button" class="btn btn-danger btn-lg btn-block">Book Adventure</button>
+            <button type="button" class="btn btn-danger btn-lg btn-block" ng-class="{disabled:adventure.booked}" ng-click="addBooking()">{{ adventure.booked ? 'Already Booked' : 'Book Adventure' }}</button>
           </div>
         </div>
       </div>
