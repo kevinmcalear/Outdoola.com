@@ -88,4 +88,10 @@ angular.module('outdoolacomApp')
       });
     };
 
+    // synchronize a read-only, synchronized array of reviews, limit to most recent 10
+    $scope.bookings = fbutil.syncArray('bookings', {limit: 10});
+
+    // display any errors
+    $scope.bookings.$loaded().catch(alert);
+
   }]);

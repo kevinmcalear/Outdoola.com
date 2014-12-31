@@ -44,6 +44,7 @@ angular.module('outdoolacomApp')
         // Updating booked adventure
         $scope.adventure.booked = true;
         $scope.adventure.$save();
+        $scope.adventure.id = $scope.adventure.$id;
         // Adding in id to profile
         $scope.profile.id = $scope.user.uid;
         // push a message to the end of the array
