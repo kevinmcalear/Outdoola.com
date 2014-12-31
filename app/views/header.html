@@ -4,7 +4,7 @@
     <div class="logo">
         <a href="#/" ng-click="reloadRoute()">
             <!-- <span class="logo-icon glyphicon glyphicon-fire"></span> -->
-            <i class="glyphicon glyphicon-fire logo-icon"></i>
+            <i class="glyphicon glyphicon-tree-conifer logo-icon"></i>
             <span>{{main.brand}}</span>
         </a>
     </div>
@@ -33,6 +33,70 @@
                 <a href="#/contact" ng-click="reloadRoute()">
                     Contact
                 </a>
+            </li>
+            <li ng-show-auth class="dropdown hidden-xs">
+                <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown">
+                    <i class="fa fa-ticket"></i>&nbsp; My Listings
+                    <!-- <span class="badge badge-danger">3</span> -->
+                </a>
+                <div class="dropdown-menu with-arrow panel">
+                    <ul class="list-group">
+                        <li class="list-group-item">
+                            <a ng-href="#/adventure" class="media">
+                                <span class="media-left media-icon">
+                                    <span class="btn-icon-lined btn-icon-round btn-info"><i class="glyphicon glyphicon-plus"></i></span>
+                                </span>
+                                <div class="media-body">
+                                    <span class="block"><strong>Add A Listing</strong></span>
+                                    <span class="text-muted block">host new adventures</span>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="list-group-item">
+                            <a href="#/your-adventures" class="media">
+                                <span class="media-left media-icon">
+                                    <span class="btn-icon-lined btn-icon-round btn-info"><i class="glyphicon glyphicon-calendar"></i></span>
+                                </span>
+                                <div class="media-body">
+                                    <span class="block"><strong>Manage Listings</strong></span>
+                                    <span class="text-muted">edit and review listings</span>
+                                </div>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </li>
+            <li ng-show-auth class="dropdown hidden-xs">
+                <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown">
+                    <i class="glyphicon glyphicon-leaf"></i>&nbsp; Adventures
+                    <!-- <span class="badge badge-danger">3</span> -->
+                </a>
+                <div class="dropdown-menu with-arrow panel">
+                    <ul class="list-group">
+                        <li class="list-group-item">
+                            <a href="#/explore" class="media">
+                                <span class="media-left media-icon">
+                                    <span class="btn-icon-lined btn-icon-round btn-info"><i class="glyphicon glyphicon-search"></i></span>
+                                </span>
+                                <div class="media-body">
+                                    <span class="block"><strong>Explore</strong></span>
+                                    <span class="text-muted block">find new adventures</span>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="list-group-item">
+                            <a href="#/adventures" class="media">
+                                <span class="media-left media-icon">
+                                    <span class="btn-icon-lined btn-icon-round btn-info"><i class="glyphicon glyphicon-briefcase"></i></span>
+                                </span>
+                                <div class="media-body">
+                                    <span class="block"><strong>Booked Adventures</strong></span>
+                                    <span class="text-muted">view your booked adventures</span>
+                                </div>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
             </li>
         </ul>
 
