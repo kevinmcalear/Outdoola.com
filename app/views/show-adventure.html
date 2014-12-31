@@ -61,7 +61,7 @@
           <div class="col-md-6">
             <h3><strong>What You're Getting Into:</strong></h3>
             <p>{{adventure.description}}</p>
-            <button type="button" class="btn btn-danger btn-lg btn-block" ng-class="{disabled:adventure.booked}" ng-click="addBooking()">{{ adventure.booked ? 'Already Booked' : 'Book Adventure' }}</button>
+            <button ng-show-auth type="button" class="btn btn-danger btn-lg btn-block" ng-class="{disabled:adventure.booked}" ng-click="addBooking()">{{ adventure.booked ? 'Already Booked' : 'Book Adventure' }}</button>
           </div>
         </div>
       </div>
@@ -87,7 +87,7 @@
                 </div>
               </blockquote>
           </div>
-          <form ng-init="newReview.rating = 5;">
+          <form ng-show-auth ng-init="newReview.rating = 5;">
             <div class="row">
               <div class="panel-body" data-ng-controller="RatingDemoCtrl">
                 <div class="col-md-10">
