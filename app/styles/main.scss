@@ -49,3 +49,19 @@
 .min-400 {
   min-height: 400px;
 }
+
+// landing page
+.dock-background {
+  background-image: url(https://s3.amazonaws.com/outdoola/dock.jpg);
+  height: 750px;
+  background-size: 100%;
+  background-repeat: no-repeat;
+  .jumbotron {
+    background-color: rgba(255, 255, 255, 0);
+  }
+  .row > div {
+    padding: 30px;
+    background: #eaeaea;
+    margin-right: 1%;
+  }
+}
