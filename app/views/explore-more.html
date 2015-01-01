@@ -112,12 +112,17 @@
       <section ng-repeat="adventure in adventures | reverse | filter:searchText" class="col-md-6 min-400">
         <!-- profile panel -->
         <div class="panel panel-profile">
-          <div class="panel-heading text-center bg-info">
-            <a ng-href="#/profiles/{{adventure.owner.id}}">
-              <img alt="" ng-if="adventure.picture" ng-src="data:{{adventure.owner.picture.filetype}};base64,{{adventure.owner.picture.base64}}" class="img-circle img80_80">
+          <div class="panel-heading text-center" style="padding: 0px;">
+            <div style="max-height:150px;overflow:hidden;border-radius: 3px;">
+              <img alt="" style="width:100%;" ng-if="adventure.picture" ng-src="data:{{adventure.picture.filetype}};base64,{{adventure.picture.base64}}">
+            </div>
+            <a ng-href="#/profiles/{{adventure.owner.id}}" class="pull-right" style="margin-top: -18px;margin-right: 10px;position: relative;border: 3px solid white;border-radius: 50%;">
+              <img alt="" ng-if="adventure.picture" ng-src="data:{{adventure.owner.picture.filetype}};base64,{{adventure.owner.picture.base64}}" class="img30_30 img-circle">
             </a>
+            <div class="clearfix"></div>
             <h3><a ng-href="#/adventures/{{adventure.$id}}">{{adventure.name}}</a></h3>
             <p ng-show="adventure.size.length >= 1">{{adventure.size == '1' ? adventure.size + " Person": adventure.size + " People" }}</p>
+
           </div>
           <div class="list-justified-container">
             <ul class="list-justified text-center">
