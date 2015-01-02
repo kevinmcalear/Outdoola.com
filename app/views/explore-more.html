@@ -11,15 +11,15 @@
           <!-- <div class="panel-heading"><strong><span class="glyphicon glyphicon-th"></span> Google Map - Dynamic Map</strong></div> -->
           <div class="panel-body">
               <map class="ui-map" zoom="3" center="[37.7034225,-93.8400607]" map-type-id="TERRAIN" disable-default-u-i="true">
-                <marker ng-repeat="adventure in adventures | reverse | filter:searchText" position="encodeAddress( {{ adventure.location }} );" icon="//s3.amazonaws.com/outdoola/marker.png" on-click="toAdventure({{adventure.$id}})"></marker>
+                <marker ng-repeat="adventure in adventures | reverse | filter:searchText | filter:{size:filterSize}" position="encodeAddress( {{ adventure.location }} );" icon="//s3.amazonaws.com/outdoola/marker.png" on-click="toAdventure({{adventure.$id}})"></marker>
               </map>
           </div>
       </section>
       <section class="panel panel-default">
-        <div class="panel-body" data-ng-controller="DatepickerDemoCtrl">
+        <div class="panel-body">
             <div class="row">
                 <h5 class="panel-body"><strong>Your Trip Date: {{dt | date:'fullDate'}}</strong></h5>
-                <div class="col-sm-3" data-ng-controller="TypeaheadCtrl" >
+                <div class="col-sm-3" data-ng-controller="TypeaheadCtrl" ng-model="state">
                   <input type="text"
                      ng-model="selected"
                      typeahead="state for state in states | filter:$viewValue | limitTo:8"
@@ -44,18 +44,18 @@
                 </div>
                 <div class="col-sm-4">
                   <span class="ui-select">
-                      <select>
-                          <option>1 Person</option>
-                          <option>2 People</option>
-                          <option>3 People</option>
-                          <option>4 People</option>
-                          <option>5 People</option>
-                          <option>6 People</option>
-                          <option>7 People</option>
-                          <option>8 People</option>
-                          <option>9 People</option>
-                          <option>10 People</option>
-                          <option>10+ People</option>
+                      <select ng-model="filterSize">
+                          <option value="1">1 Person</option>
+                          <option value="2">2 People</option>
+                          <option value="3">3 People</option>
+                          <option value="4">4 People</option>
+                          <option value="5">5 People</option>
+                          <option value="6">6 People</option>
+                          <option value="7">7 People</option>
+                          <option value="8">8 People</option>
+                          <option value="9">9 People</option>
+                          <option value="10">10 People</option>
+                          <!-- <option value="">10+ People</option> -->
                       </select>
                   </span>
                 </div>
@@ -109,22 +109,24 @@
       </section>
    </section>
    <section class="col-md-6">
-      <section ng-repeat="adventure in adventures | reverse | filter:searchText" class="col-md-6 min-400">
+      <section ng-repeat="adventure in adventures | reverse | filter:searchText | filter:{size:filterSize}" class="col-md-6 min-400">
         <!-- profile panel -->
         <div class="panel panel-profile">
           <div class="panel-heading text-center" style="padding: 0px;">
-            <div style="max-height:150px;overflow:hidden;border-radius: 3px;">
-              <img alt="" style="width:100%;" ng-if="adventure.picture" ng-src="data:{{adventure.picture.filetype}};base64,{{adventure.picture.base64}}">
-            </div>
+            <a ng-href="#/adventures/{{adventure.$id}}">
+              <div style="max-height:170px;overflow:hidden;border-radius: 3px;">
+                <img alt="" style="width:100%;" ng-if="adventure.picture" ng-src="data:{{adventure.picture.filetype}};base64,{{adventure.picture.base64}}">
+              </div>
+            </a>
             <a ng-href="#/profiles/{{adventure.owner.id}}" class="pull-right" style="margin-top: -18px;margin-right: 10px;position: relative;border: 3px solid white;border-radius: 50%;">
               <img alt="" ng-if="adventure.picture" ng-src="data:{{adventure.owner.picture.filetype}};base64,{{adventure.owner.picture.base64}}" class="img30_30 img-circle">
             </a>
-            <div class="clearfix"></div>
+            <div class="clearfix" style="height: 0px;"></div>
             <h3><a ng-href="#/adventures/{{adventure.$id}}">{{adventure.name}}</a></h3>
             <p ng-show="adventure.size.length >= 1">{{adventure.size == '1' ? adventure.size + " Person": adventure.size + " People" }}</p>
 
           </div>
-          <div class="list-justified-container">
+          <div class="list-justified-container" style="padding-top: 5px;">
             <ul class="list-justified text-center">
               <li>
                 <p class="size-h3 color-success">${{adventure.price}}</p>
