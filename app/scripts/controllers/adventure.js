@@ -130,4 +130,28 @@ angular.module('outdoolacomApp')
       $scope.format = $scope.formats[0];
 
 
+      // This is the wizard logic
+      $scope.wizard = {
+        stepOne: true,
+        stepTwo: false,
+        stepThree: false
+      }
+      $scope.step = function(step) {
+        if (step == "stepOne") {
+          $scope.wizard.stepOne = true;
+          $scope.wizard.stepTwo = false;
+          $scope.wizard.stepThree = false;
+        }
+        if  (step == "stepTwo") {
+          $scope.wizard.stepOne = false;
+          $scope.wizard.stepTwo = true;
+          $scope.wizard.stepThree = false;
+        }
+        if  (step == "stepThree") {
+          $scope.wizard.stepOne = false;
+          $scope.wizard.stepTwo = false;
+          $scope.wizard.stepThree = true;
+        }
+      }
+
   }]);

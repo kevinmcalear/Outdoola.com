@@ -7,7 +7,87 @@
 </script>
 <div class="page">
 
-  <h3>Add A New Adventure.</h3>
+<section class="panel panel-default">
+        <div class="panel-heading"><strong><span class="glyphicon glyphicon-th"></span> Wizard Form</strong></div>
+          <div class="panel-body">
+            <div class="clearfix">
+              <ul class="nav nav-pills nav-justified" style="margin-bottom: 10px;">
+                <li role="presentation" ng-class="{active:wizard.stepOne}" ng-click="step('stepOne')"><a href="" style="border-radius: 40px;padding: 20px;margin: 10px 20px;">one</a></li>
+                <li role="presentation" ng-class="{active:wizard.stepTwo}" ng-click="step('stepTwo')"><a href="" style="border-radius: 40px;padding: 20px;margin: 10px 20px;">two</a></li>
+                <li role="presentation" ng-class="{active:wizard.stepThree}" ng-click="step('stepThree')"><a href="" style="border-radius: 40px;padding: 20px;margin: 10px 20px;">three</a></li>
+              </ul>
+            </div>
+            <form>
+                <div ng-show="wizard.stepOne">
+                  <div class="form-group">
+                    <label for="adventureName">Adventure's Name</label>
+                    <input required class="form-control required" id="adventureName" placeholder="Name" ng-model="newAdventure.name">
+                  </div>
+                  <div class="form-group">
+                    <label for="adventureName">Adventure's Location</label>
+                    <input required type="text" ng-model="newAdventure.location" placeholder="Start Typing The Address" typeahead="address for address in getLocation($viewValue)" typeahead-loading="loadingLocations" class="form-control">
+                    <i ng-show="loadingLocations" class="glyphicon glyphicon-refresh"></i>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="adventureDescription">Description</label>
+                    <textarea required class="form-control required" id="adventureDescription" placeholder="Description" ng-model="newAdventure.description" rows="5"></textarea>
+                  </div>
+
+                  <button type="submit" class="btn btn-default btn-primary pull-right" ng-click="step('stepTwo')">Next</button>
+                </div>
+
+                <div ng-show="wizard.stepTwo">
+
+                  <div class="form-group">
+                    <label for="adventurePrice">Price Per Person</label>
+                  <input
+                    type="number"
+                    name="currency"
+                    min="0"
+                    max="9999"
+                    step="0.01"
+                    size="4"
+                    title="CDA Currency Format - no dollar sign and no comma(s) - cents (.##) are optional"
+                    class="form-control required"
+                    id="adventurePrice"
+                    placeholder="$00.00"
+                    ng-model="newAdventure.price">
+                  </div>
+                  <div class="form-group">
+                    <label for="exampleInputFile">Upload A Picture</label>
+                    <input type="file" id="exampleInputFile" ng-model="newAdventure.picture" base-sixty-four-input>
+                    <p class="help-block">Select a picture to represent your Adventure.</p>
+                    Image Preview: <br>
+                    <img class="img80_80 img-thumbnail" ng-if="newAdventure.picture" ng-src="data:{{newAdventure.picture.filetype}};base64,{{newAdventure.picture.base64}}" alt="">
+                  </div>
+                  <div class="form-group">
+                    <label for="adventureSize">Adventure Size</label>
+                    <select id="adventureSize" class="form-control required" ng-model="newAdventure.size">
+                      <option value="" disabled selected>Choose The Number Of People</option>
+                      <option value='1'>1 Person</option>
+                      <option value='2'>2 People</option>
+                      <option value='3'>3 People</option>
+                      <option value='4'>4 People</option>
+                      <option value='5'>5 People</option>
+                    </select>
+                  </div>
+                  <button type="submit" class="btn btn-default btn-primary" ng-click="step('stepOne')">Previous</button>
+                  <button type="submit" class="btn btn-default btn-primary" ng-click="step('stepThree')">Next</button>
+                </div>
+
+                <div ng-show="wizard.stepThree">
+                  Third Content
+                  <button type="submit" class="btn btn-default btn-primary" ng-click="step('stepTwo')">Previous</button>
+                 <button type="submit" class="btn btn-default btn-primary" ng-click="addAdventure(newAdventure);newAdventure = null;">Add Your New Adventure</button>
+                </div>
+
+            </form>
+
+        </div>
+    </section>
+
+  <!-- <h3>Add A New Adventure.</h3>
   <div class="panel panel-default">
     <div class="panel-body">
       <form role="form">
@@ -62,80 +142,4 @@
       </form>
     </div>
   </div>
-</div>
-
-
-<!-- <div class="fb-image-upload">
-  <form ng-submit="upload_image(image)">
-    <div class="fb-error" ng-show="error">{{error}}</div>
-    <div class="fb-inputs" ng-hide="image.isUploading">
-      <input class="fb-image-upload" fb-image-upload class="fb-input" type="file" name="image"/>
-      <input class="fb-submit" type="submit" value="Upload Image" ng-show="image.valid"/>
-    </div>
-    <div class="fb-uploading" ng-show="image.isUploading">
-      Uploading...
-    </div>
-    <input type="submit" value="Submit">
-  </form>
-</div>
- -->
-
-<!--
-
-
-<div class="page" data-ng-controller="AdventureCtrl">
-
-    <section class="panel panel-default"> -->
-       <!--  <div class="panel-heading"><strong><span class="glyphicon glyphicon-globe"></span> Hosting Your New Adventure</strong></div> -->
-        <!-- <div class="panel-body">
-            <div data-ui-wizard-form>
-                <h1>&nbsp;&nbsp;&nbsp;&nbsp;When Is Your Adventure?</h1>
-                <div>
-                    <h4>List Your Adventure's Availability.</h4>
-                    <div class="panel-body">
-                        <dl class="dl-horizontal">
-                            <dt>Availablity</dt>
-                            <dd>
-                                <label class="ui-radio"><input name="radio1" type="radio" value="option1" ><span>Always</span></label>
-                                <label class="ui-radio"><input name="radio1" type="radio" value="option2" checked><span>Sometimes</span></label>
-                                <label class="ui-radio"><input name="radio1" type="radio" value="option3"><span>One Time</span></label>
-
-                                <timepicker class="ui-timepicker" hour-step="hstep" minute-step="mstep" show-meridian="ismeridian"></timepicker>
-                            </dd>
-                        </dl>
-                    </div>
-                </div>
-
-                <h1>&nbsp;&nbsp;&nbsp;&nbsp;How Much Is Your Adventure?</h1>
-                <div>
-                    <h4>List Your Adventure's Cost.</h4>
-                    <div class="input-group">
-                        <span class="input-group-addon">$</span>
-                        <input type="text" class="form-control">
-                        <span class="input-group-addon">/ Person</span>
-                    </div>
-                    <h4>For How Long?</h4>
-                    <span class="ui-select">
-                        <select>
-                            <option value="Mustard">1/2 hour</option>
-                            <option value="Ketchup">1 hour</option>
-                            <option value="Barbecue">2 hours</option>
-                            <option value="Barbecue">3 hours</option>
-                            <option value="Barbecue">1/2 day</option>
-                            <option value="Barbecue">all day</option>
-                        </select>
-                    </span>
-                </div>
-
-                <h1>&nbsp;&nbsp;&nbsp;&nbsp;Your Adventure's Details</h1>
-                <div>
-                <input type="text" class="form-control" placeholder="Your Adventure's Title">
-                <textarea name="" id="" class="form-control" rows="4" placeholder="The Summary of Your Adventure."></textarea>
-                </div>
-            </div>
-
-        </div>
-    </section>
-
-</div>
- -->
+</div> -->
