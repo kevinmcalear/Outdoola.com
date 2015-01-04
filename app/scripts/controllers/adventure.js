@@ -26,17 +26,32 @@ angular.module('outdoolacomApp')
 
     // provide a method for adding an adventure
     $scope.addAdventure = function(newAdventure) {
-      if( newAdventure ) {
-        // adding in userid
-        $scope.profile.id = $scope.user.uid;
-        // add a user to the adventure
-        newAdventure.owner = $scope.profile;
-        // setting the default booked value to false;
-        newAdventure.booked = false;
-        // push an adventure to the end of the array
-        $scope.adventures.$add( newAdventure )
-          // display any errors
-          .catch(alert);
+
+      if (
+        newAdventure.name &&
+        newAdventure.description &&
+        newAdventure.location &&
+        newAdventure.picture &&
+        newAdventure.price &&
+        newAdventure.size
+        ) {
+          // adding in userid
+          $scope.profile.id = $scope.user.uid;
+          // add a user to the adventure
+          newAdventure.owner = $scope.profile;
+          // setting the default booked value to false;
+          newAdventure.booked = false;
+          // push an adventure to the end of the array
+          $scope.adventures.$add( newAdventure )
+            .then(function(ref) {
+              // go to the congrats/final step
+              $scope.step('stepFour');
+              // make new adventure available
+              $scope.newSavedAdventure = ref.key();
+            })
+
+            // display any errors
+            .catch(alert);
       }
     };
 
@@ -131,26 +146,36 @@ angular.module('outdoolacomApp')
 
 
       // This is the wizard logic
-      $scope.wizard = {
+      $scope.wizardForm = {
         stepOne: true,
         stepTwo: false,
-        stepThree: false
+        stepThree: false,
+        stepFour: false
       }
       $scope.step = function(step) {
         if (step == "stepOne") {
-          $scope.wizard.stepOne = true;
-          $scope.wizard.stepTwo = false;
-          $scope.wizard.stepThree = false;
+          $scope.wizardForm.stepOne = true;
+          $scope.wizardForm.stepTwo = false;
+          $scope.wizardForm.stepThree = false;
+          $scope.wizardForm.stepFour = false;
         }
         if  (step == "stepTwo") {
-          $scope.wizard.stepOne = false;
-          $scope.wizard.stepTwo = true;
-          $scope.wizard.stepThree = false;
+          $scope.wizardForm.stepOne = false;
+          $scope.wizardForm.stepTwo = true;
+          $scope.wizardForm.stepThree = false;
+          $scope.wizardForm.stepFour = false;
         }
         if  (step == "stepThree") {
-          $scope.wizard.stepOne = false;
-          $scope.wizard.stepTwo = false;
-          $scope.wizard.stepThree = true;
+          $scope.wizardForm.stepOne = false;
+          $scope.wizardForm.stepTwo = false;
+          $scope.wizardForm.stepThree = true;
+          $scope.wizardForm.stepFour = false;
+        }
+        if  (step == "stepFour") {
+          $scope.wizardForm.stepOne = false;
+          $scope.wizardForm.stepTwo = false;
+          $scope.wizardForm.stepThree = false;
+          $scope.wizardForm.stepFour = true;
         }
       }
 

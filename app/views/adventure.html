@@ -8,138 +8,121 @@
 <div class="page">
 
 <section class="panel panel-default">
-        <div class="panel-heading"><strong><span class="glyphicon glyphicon-th"></span> Wizard Form</strong></div>
+        <div class="panel-heading"><strong><span class="glyphicon glyphicon-th"></span> Create Your New Listing</strong></div>
           <div class="panel-body">
             <div class="clearfix">
-              <ul class="nav nav-pills nav-justified" style="margin-bottom: 10px;">
-                <li role="presentation" ng-class="{active:wizard.stepOne}" ng-click="step('stepOne')"><a href="" style="border-radius: 40px;padding: 20px;margin: 10px 20px;">one</a></li>
-                <li role="presentation" ng-class="{active:wizard.stepTwo}" ng-click="step('stepTwo')"><a href="" style="border-radius: 40px;padding: 20px;margin: 10px 20px;">two</a></li>
-                <li role="presentation" ng-class="{active:wizard.stepThree}" ng-click="step('stepThree')"><a href="" style="border-radius: 40px;padding: 20px;margin: 10px 20px;">three</a></li>
+              <ul class="nav nav-tabs nav-justified">
+                <li role="presentation" ng-class="{active:wizardForm.stepOne}" ng-click="step('stepOne')"><a href=""><span class="btn-icon-lined btn-icon-round btn-info glyphicon glyphicon-plus"></span> &nbsp;&nbsp;<strong>The Basics</strong></a></li>
+                <li role="presentation" ng-class="{active:wizardForm.stepTwo}" ng-click="step('stepTwo')"><a href=""><span class="btn-icon-lined btn-icon-round btn-info glyphicon glyphicon-list-alt"></span> &nbsp;&nbsp;<strong>The Details</strong></a></li>
+                <li role="presentation" ng-class="{active:wizardForm.stepThree}" ng-click="step('stepThree')"><a href=""><span class="btn-icon-lined btn-icon-round btn-info glyphicon glyphicon-calendar"></span> &nbsp;&nbsp;<strong>The Date</strong></a></li>
               </ul>
             </div>
-            <form>
-                <div ng-show="wizard.stepOne">
-                  <div class="form-group">
-                    <label for="adventureName">Adventure's Name</label>
-                    <input required class="form-control required" id="adventureName" placeholder="Name" ng-model="newAdventure.name">
+            <div class="wiz-body">
+              <form novalidate name="wizard">
+                  <div ng-show="wizardForm.stepOne">
+                    <div class="form-group" ng-class="{ 'has-error' : wizard.name1.$invalid && !wizard.name1.$pristine }">
+                      <label for="adventureName">Adventure's Name <span style="color:#e52e18;">*</span></label>
+                      <input name="name1" required type="text" class="form-control"  id="adventureName" placeholder="Name" ng-model="newAdventure.name" ng-minlength="3" ng-maxlength="10">
+                      <p class="help-block">
+                        <span ng-show="wizard.name1.$error.minlength">Too short. Must be more than 3 letters.</span>
+                        <span ng-show="wizard.name1.$error.maxlength">Too long. Must be less than 10 letters.</span>
+                      </p>
+                    </div>
+                    <div class="form-group" ng-class="{ 'has-error' : wizard.location.$invalid && !wizard.location.$pristine }">
+                      <label for="adventureName">Adventure's Location <span style="color:#e52e18;">*</span></label>
+                      <input name="location" required type="text" ng-model="newAdventure.location" placeholder="Start Typing The Address" typeahead="address for address in getLocation($viewValue)" typeahead-loading="loadingLocations" class="form-control">
+                      <i ng-show="loadingLocations" class="glyphicon glyphicon-refresh"></i>
+                      <p ng-show="wizard.location.$invalid && !wizard.location.$pristine" class="help-block">Required.</p>
+                    </div>
+
+                    <div class="form-group" ng-class="{ 'has-error' : wizard.desc.$invalid && !wizard.desc.$pristine }">
+                      <label for="adventureDescription">Description <span style="color:#e52e18;">*</span></label>
+                      <textarea name="desc" required class="form-control required" id="adventureDescription" placeholder="Description" ng-model="newAdventure.description" rows="5" ng-minlength="8"></textarea>
+                      <p ng-show="wizard.desc.$invalid && !wizard.desc.$pristine" class="help-block">Explain what this adventure is about.</p>
+                    </div>
+
+                    <button type="submit" ng-class="{disabled: wizard.name1.$invalid &&  wizard.location.$invalid &&  wizard.desc.$invalid}" class="btn btn-default btn-primary pull-right" ng-click="step('stepTwo')">Next</button>
                   </div>
-                  <div class="form-group">
-                    <label for="adventureName">Adventure's Location</label>
-                    <input required type="text" ng-model="newAdventure.location" placeholder="Start Typing The Address" typeahead="address for address in getLocation($viewValue)" typeahead-loading="loadingLocations" class="form-control">
-                    <i ng-show="loadingLocations" class="glyphicon glyphicon-refresh"></i>
+
+                  <div ng-show="wizardForm.stepTwo">
+
+                    <div class="form-group" ng-class="{ 'has-error' : wizard.price.$invalid && !wizard.price.$pristine }">
+                      <label for="adventurePrice">Price Per Person <span style="color:#e52e18;">*</span></label>
+                      <input
+                        type="number"
+                        name="price"
+                        ng-min="0"
+                        ng-max="9999"
+                        ng-step="0.01"
+                        ng-size="4"
+                        title="CDA Currency Format - no dollar sign and no comma(s) - cents (.##) are optional"
+                        class="form-control required"
+                        id="adventurePrice"
+                        placeholder="$00.00"
+                        ng-model="newAdventure.price">
+                        <p ng-show="wizard.price.$invalid && !wizard.price.$pristine" class="help-block">Must be a number.</p>
+                    </div>
+                    <div class="form-group" ng-class="{ 'has-error' : wizard.picture.$invalid && !wizard.picture.$pristine }">
+                      <label for="exampleInputFile">Upload A Picture <span style="color:#e52e18;">*</span></label>
+                      <input name="picture" type="file" id="exampleInputFile" ng-model="newAdventure.picture" base-sixty-four-input>
+                      <p class="help-block">Select a picture to represent your Adventure.</p>
+                      Image Preview: <br>
+                      <img class="img80_80 img-thumbnail" ng-if="newAdventure.picture" ng-src="data:{{newAdventure.picture.filetype}};base64,{{newAdventure.picture.base64}}" alt="">
+                    </div>
+                    <div class="form-group" ng-class="{ 'has-error' : wizard.size.$invalid && !wizard.size.$pristine }">
+                      <label for="adventureSize">Adventure Size <span style="color:#e52e18;">*</span></label>
+                      <select name="size" id="adventureSize" class="form-control required" ng-model="newAdventure.size">
+                        <option value="" disabled selected>Choose The Number Of People</option>
+                        <option value='1'>1 Person</option>
+                        <option value='2'>2 People</option>
+                        <option value='3'>3 People</option>
+                        <option value='4'>4 People</option>
+                        <option value='5'>5 People</option>
+                      </select>
+                    </div>
+                    <div class="pull-right">
+                      <button type="submit" class="btn btn-default btn-primary" ng-click="step('stepOne')">Previous</button>
+                      <button type="submit" class="btn btn-default btn-primary" ng-click="step('stepThree')">Next</button>
+                    </div>
                   </div>
 
-                  <div class="form-group">
-                    <label for="adventureDescription">Description</label>
-                    <textarea required class="form-control required" id="adventureDescription" placeholder="Description" ng-model="newAdventure.description" rows="5"></textarea>
+                  <div ng-show="wizardForm.stepThree">
+
+                    <div class="form-group" ng-class="{ 'has-error' : wizard.date.$invalid && !wizard.date.$pristine }">
+                      <label for="adventureName">Adventure's Name <span style="color:#e52e18;">*</span></label>
+                       <div class="input-group ui-datepicker">
+                          <input type="text"
+                                 name="date"
+                                 class="form-control"
+                                 datepicker-popup="{{format}}"
+                                 ng-model="newAdventure.date"
+                                 is-open="opened"
+                                 min="minDate"
+                                 max="'2017-06-22'"
+                                 datepicker-options="dateOptions"
+                                 date-disabled="disabled(date, mode)"
+                                 ng-required="true"
+                                 close-text="Close">
+                          <span class="input-group-addon" ng-click="open($event)"><i class="fa fa-calendar"></i></span>
+                      </div>
+                      <span ng-show="wizard.date.$invalid && !wizard.date.$pristine" class="help-block">Please pick a date.</span>
+                    </div>
+                    <div class="pull-right">
+                      <button type="submit" class="btn btn-default btn-primary" ng-click="step('stepTwo')">Previous</button>
+                      <button type="submit" class="btn btn-default btn-primary" ng-click="addAdventure(newAdventure);newAdventure = null;">Add Your New Adventure</button>
+                    </div>
                   </div>
 
-                  <button type="submit" class="btn btn-default btn-primary pull-right" ng-click="step('stepTwo')">Next</button>
-                </div>
-
-                <div ng-show="wizard.stepTwo">
-
-                  <div class="form-group">
-                    <label for="adventurePrice">Price Per Person</label>
-                  <input
-                    type="number"
-                    name="currency"
-                    min="0"
-                    max="9999"
-                    step="0.01"
-                    size="4"
-                    title="CDA Currency Format - no dollar sign and no comma(s) - cents (.##) are optional"
-                    class="form-control required"
-                    id="adventurePrice"
-                    placeholder="$00.00"
-                    ng-model="newAdventure.price">
+                  <div ng-show="wizardForm.stepFour">
+                    <h1>Congrats! You've just listed your adventure.</h1>
+                    {{ newSavedAdventure }}
+                    <div>
+                      <a type="submit" class="btn btn-default btn-primary" ng-href="#/adventure">Create Another Listing</a>
+                      <button type="submit" class="btn btn-default btn-primary">View Next</button>
+                    </div>
                   </div>
-                  <div class="form-group">
-                    <label for="exampleInputFile">Upload A Picture</label>
-                    <input type="file" id="exampleInputFile" ng-model="newAdventure.picture" base-sixty-four-input>
-                    <p class="help-block">Select a picture to represent your Adventure.</p>
-                    Image Preview: <br>
-                    <img class="img80_80 img-thumbnail" ng-if="newAdventure.picture" ng-src="data:{{newAdventure.picture.filetype}};base64,{{newAdventure.picture.base64}}" alt="">
-                  </div>
-                  <div class="form-group">
-                    <label for="adventureSize">Adventure Size</label>
-                    <select id="adventureSize" class="form-control required" ng-model="newAdventure.size">
-                      <option value="" disabled selected>Choose The Number Of People</option>
-                      <option value='1'>1 Person</option>
-                      <option value='2'>2 People</option>
-                      <option value='3'>3 People</option>
-                      <option value='4'>4 People</option>
-                      <option value='5'>5 People</option>
-                    </select>
-                  </div>
-                  <button type="submit" class="btn btn-default btn-primary" ng-click="step('stepOne')">Previous</button>
-                  <button type="submit" class="btn btn-default btn-primary" ng-click="step('stepThree')">Next</button>
-                </div>
 
-                <div ng-show="wizard.stepThree">
-                  Third Content
-                  <button type="submit" class="btn btn-default btn-primary" ng-click="step('stepTwo')">Previous</button>
-                 <button type="submit" class="btn btn-default btn-primary" ng-click="addAdventure(newAdventure);newAdventure = null;">Add Your New Adventure</button>
-                </div>
-
-            </form>
-
+              </form>
+            </div>
         </div>
     </section>
-
-  <!-- <h3>Add A New Adventure.</h3>
-  <div class="panel panel-default">
-    <div class="panel-body">
-      <form role="form">
-        <div class="form-group">
-          <label for="adventureName">Adventure's Name</label>
-          <input class="form-control required" id="adventureName" placeholder="Name" ng-model="newAdventure.name">
-        </div>
-        <div class="form-group">
-          <label for="adventureName">Adventure's Location</label>
-          <input type="text" ng-model="newAdventure.location" placeholder="Start Typing The Address" typeahead="address for address in getLocation($viewValue)" typeahead-loading="loadingLocations" class="form-control">
-          <i ng-show="loadingLocations" class="glyphicon glyphicon-refresh"></i>
-        </div>
-
-        <div class="form-group">
-          <label for="adventureDescription">Description</label>
-          <textarea class="form-control required" id="adventureDescription" placeholder="Description" ng-model="newAdventure.description" rows="3"></textarea>
-        </div>
-        <div class="form-group">
-          <label for="adventurePrice">Price Per Person</label>
-        <input
-          type="number"
-          name="currency"
-          min="0"
-          max="9999"
-          step="0.01"
-          size="4"
-          title="CDA Currency Format - no dollar sign and no comma(s) - cents (.##) are optional"
-          class="form-control required"
-          id="adventurePrice"
-          placeholder="$00.00"
-          ng-model="newAdventure.price">
-        </div>
-        <div class="form-group">
-          <label for="exampleInputFile">Upload A Picture</label>
-          <input type="file" id="exampleInputFile" ng-model="newAdventure.picture" base-sixty-four-input>
-          <p class="help-block">Select a picture to represent your Adventure.</p>
-          Image Preview: <br>
-          <img class="img-responsive img-thumbnail" ng-if="newAdventure.picture" ng-src="data:{{newAdventure.picture.filetype}};base64,{{newAdventure.picture.base64}}" alt="">
-        </div>
-        <div class="form-group">
-          <label for="adventureSize">Adventure Size</label>
-          <select id="adventureSize" class="form-control required" ng-model="newAdventure.size">
-            <option value="" disabled selected>Choose The Number Of People</option>
-            <option value='1'>1 Person</option>
-            <option value='2'>2 People</option>
-            <option value='3'>3 People</option>
-            <option value='4'>4 People</option>
-            <option value='5'>5 People</option>
-          </select>
-        </div>
-        <button type="submit" class="btn btn-default btn-primary" ng-click="addAdventure(newAdventure);newAdventure = null;">Add Your New Adventure</button>
-      </form>
-    </div>
-  </div>
-</div> -->
