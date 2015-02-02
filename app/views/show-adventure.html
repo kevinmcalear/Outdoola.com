@@ -127,8 +127,8 @@
         <div class="panel-body">
           <h1>Map</h1>
           <p>{{ adventure.location }}</p>
-          <map ng-show="{{ adventure.location.length >= 1 }}" center="encodeAddress( {{ adventure.location }} );" zoom="12" map-type-id="TERRAIN" disable-default-u-i="true">
-            <marker position="encodeAddress( {{ adventure.location }} );" icon="//s3.amazonaws.com/outdoola/marker.png"></marker>
+          <map ng-show="{{ adventure.location.length >= 1 }}" center="{{ adventure.latLong.lat }} {{ adventure.latLong.lng }}" zoom="12" map-type-id="TERRAIN" disable-default-u-i="true">
+            <marker position="{{ adventure.latLong.lat }} {{ adventure.latLong.lng }}" icon="//s3.amazonaws.com/outdoola/marker.png"></marker>
           </map>
         </div>
       </div>

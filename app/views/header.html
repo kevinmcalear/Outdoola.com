@@ -104,7 +104,7 @@
 
             <li ng-show-auth class="dropdown text-normal nav-profile">
                 <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown">
-                    <img ng-src="data:{{profile.picture.filetype}};base64,{{profile.picture.base64}}" alt="" class="img-circle img30_30">
+                    <img ng-if="profile.picture" ng-src="data:{{profile.picture.filetype}};base64,{{profile.picture.base64}}" alt="" class="img-circle img30_30">
                     <span class="hidden-xs">
                         <span data-i18n="{{profile.first_name}} {{profile.last_name}}"></span>
                     </span>

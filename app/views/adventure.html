@@ -7,7 +7,7 @@
 </script>
 <div class="page">
 
-<section class="panel panel-default">
+<section class="panel panel-default" style="min-height:600px;">
         <div class="panel-heading"><strong><span class="glyphicon glyphicon-th"></span> Create Your New Listing</strong></div>
           <div class="panel-body">
             <div class="clearfix">
@@ -28,11 +28,33 @@
                         <span ng-show="wizard.name1.$error.maxlength">Too long. Must be less than 10 letters.</span>
                       </p>
                     </div>
+                    <div class="form-group" ng-class="{ 'has-error' : wizard.name1.$invalid && !wizard.name1.$pristine }">
+                      <label for="adventureName">Tagline <span style="color:#e52e18;">*</span></label>
+                      <input name="tagline" required type="text" class="form-control"  id="adventureTagline" placeholder="Tagline" ng-model="newAdventure.tagline" ng-maxlength="30">
+                      <p class="help-block">
+                        <span ng-show="wizard.tagline.$error.maxlength">Too long. Must be less than 30 letters.</span>
+                      </p>
+                    </div>
                     <div class="form-group" ng-class="{ 'has-error' : wizard.location.$invalid && !wizard.location.$pristine }">
                       <label for="adventureName">Adventure's Location <span style="color:#e52e18;">*</span></label>
-                      <input name="location" required type="text" ng-model="newAdventure.location" placeholder="Start Typing The Address" typeahead="address for address in getLocation($viewValue)" typeahead-loading="loadingLocations" class="form-control">
-                      <i ng-show="loadingLocations" class="glyphicon glyphicon-refresh"></i>
-                      <p ng-show="wizard.location.$invalid && !wizard.location.$pristine" class="help-block">Required.</p>
+                      <!-- To add in the full address typeahead: -->
+                      <!-- typeahead="address for address in getLocation($viewValue)"  typeahead-loading="loadingLocations"-->
+                      <div class="row">
+                        <div class="col-sm-3">
+                          <input name="address" required type="text" ng-model="newAdventure.address" placeholder="Address"  class="form-control">
+                        </div>
+                        <div class="col-sm-3">
+                          <input name="city" required type="text" ng-model="newAdventure.city" placeholder="City" class="form-control">
+                        </div>
+                        <div class="col-sm-3">
+                          <input name="state" required type="text" ng-model="newAdventure.state" placeholder="State" class="form-control">
+                        </div>
+                        <div class="col-sm-3">
+                          <input name="zip" required type="text" ng-model="newAdventure.zip" placeholder="Zip" class="form-control">
+                        </div>
+                      </div>
+                      <!-- <i ng-show="loadingLocations" class="glyphicon glyphicon-refresh"></i> -->
+                      <!-- <p ng-show="wizard.address.$invalid && !wizard.address.$pristine wizard.city.$invalid && !wizard.city.$pristine wizard.state.$invalid && !wizard.state.$pristine wizard.zip.$invalid && !wizard.zip.$pristine" class="help-block">Required.</p> -->
                     </div>
 
                     <div class="form-group" ng-class="{ 'has-error' : wizard.desc.$invalid && !wizard.desc.$pristine }">
@@ -45,40 +67,64 @@
                   </div>
 
                   <div ng-show="wizardForm.stepTwo">
-
-                    <div class="form-group" ng-class="{ 'has-error' : wizard.price.$invalid && !wizard.price.$pristine }">
-                      <label for="adventurePrice">Price Per Person <span style="color:#e52e18;">*</span></label>
-                      <input
-                        type="number"
-                        name="price"
-                        ng-min="0"
-                        ng-max="9999"
-                        ng-step="0.01"
-                        ng-size="4"
-                        title="CDA Currency Format - no dollar sign and no comma(s) - cents (.##) are optional"
-                        class="form-control required"
-                        id="adventurePrice"
-                        placeholder="$00.00"
-                        ng-model="newAdventure.price">
-                        <p ng-show="wizard.price.$invalid && !wizard.price.$pristine" class="help-block">Must be a number.</p>
+                    <div class="row">
+                      <div class="form-group col-sm-6" ng-class="{ 'has-error' : wizard.price.$invalid && !wizard.price.$pristine }">
+                        <label for="adventurePrice">Price Per Person <span style="color:#e52e18;">*</span></label>
+                        <input
+                          type="number"
+                          name="price"
+                          ng-min="0"
+                          ng-max="9999"
+                          ng-step="0.01"
+                          ng-size="4"
+                          title="CDA Currency Format - no dollar sign and no comma(s) - cents (.##) are optional"
+                          class="form-control required"
+                          id="adventurePrice"
+                          placeholder="$00.00"
+                          ng-model="newAdventure.price">
+                          <p ng-show="wizard.price.$invalid && !wizard.price.$pristine" class="help-block">Must be a number.</p>
+                      </div>
+                      <div class="form-group col-sm-6" ng-class="{ 'has-error' : wizard.size.$invalid && !wizard.size.$pristine }">
+                        <label for="adventureSize">Adventure Size <span style="color:#e52e18;">*</span></label>
+                        <select name="size" id="adventureSize" class="form-control required" ng-model="newAdventure.size">
+                          <option value="" disabled selected>Choose The Number Of People</option>
+                          <option value='1'>1 Person</option>
+                          <option value='2'>2 People</option>
+                          <option value='3'>3 People</option>
+                          <option value='4'>4 People</option>
+                          <option value='5'>5 People</option>
+                        </select>
+                      </div>
                     </div>
-                    <div class="form-group" ng-class="{ 'has-error' : wizard.picture.$invalid && !wizard.picture.$pristine }">
-                      <label for="exampleInputFile">Upload A Picture <span style="color:#e52e18;">*</span></label>
-                      <input name="picture" type="file" id="exampleInputFile" ng-model="newAdventure.picture" base-sixty-four-input>
-                      <p class="help-block">Select a picture to represent your Adventure.</p>
-                      Image Preview: <br>
-                      <img class="img80_80 img-thumbnail" ng-if="newAdventure.picture" ng-src="data:{{newAdventure.picture.filetype}};base64,{{newAdventure.picture.base64}}" alt="">
+                    <div class="row">
+                      <div class="form-group col-sm-6" ng-class="{ 'has-error' : wizard.picture.$invalid && !wizard.picture.$pristine }">
+                        <label for="exampleInputFile">Upload A Picture <span style="color:#e52e18;">*</span></label>
+                        <input name="picture" type="file" id="exampleInputFile" ng-model="newAdventure.picture" base-sixty-four-input>
+                        <p class="help-block">Select a picture to represent your Adventure.</p>
+                        Image Preview: <br>
+                        <img class="img80_80 img-thumbnail" ng-if="newAdventure.picture" ng-src="data:{{newAdventure.picture.filetype}};base64,{{newAdventure.picture.base64}}" alt="">
+                      </div>
+                      <div class="col-sm-6">
+                        <h5><strong>Type Of Adventure:</strong></h5>
+                        <dl>
+                            <dd>
+                                <label class="ui-checkbox"><input name="checkbox1" type="checkbox" ng-model="newAdventure.hunting" value="option1" checked><span>Hunting</span></label>
+                                <label class="ui-checkbox"><input name="checkbox1" type="checkbox" ng-model="newAdventure.fishing" value="option2" ><span>Fishing</span></label>
+                                <label class="ui-checkbox"><input name="checkbox1" type="checkbox" ng-model="newAdventure.camping" value="option3"><span>Camping</span></label>
+                                <label class="ui-checkbox"><input name="checkbox1" type="checkbox" ng-model="newAdventure.water" value="option3"><span>Water</span></label>
+                            </dd>
+                        </dl>
+                        <h5><strong>Is A License Required?</strong></h5>
+                        <dl>
+                            <dd>
+                                <label class="ui-checkbox"><input name="checkbox1" type="checkbox" value="option1" checked><span>Yes</span></label>
+                            </dd>
+                        </dl>
+                      </div>
                     </div>
-                    <div class="form-group" ng-class="{ 'has-error' : wizard.size.$invalid && !wizard.size.$pristine }">
-                      <label for="adventureSize">Adventure Size <span style="color:#e52e18;">*</span></label>
-                      <select name="size" id="adventureSize" class="form-control required" ng-model="newAdventure.size">
-                        <option value="" disabled selected>Choose The Number Of People</option>
-                        <option value='1'>1 Person</option>
-                        <option value='2'>2 People</option>
-                        <option value='3'>3 People</option>
-                        <option value='4'>4 People</option>
-                        <option value='5'>5 People</option>
-                      </select>
+                    <div class="form-group" ng-class="{ 'has-error' : wizard.desc.$invalid && !wizard.desc.$pristine }">
+                      <label for="adventureDescription">Add Tag Words: <span style="color:#e52e18;">*</span></label>
+                      <textarea name="desc" required class="form-control" id="adventureTagWords" placeholder="Add comma seporated tags here." ng-model="newAdventure.tagWords" rows="2" ng-minlength="8"></textarea>
                     </div>
                     <div class="pull-right">
                       <button type="submit" class="btn btn-default btn-primary" ng-click="step('stepOne')">Previous</button>

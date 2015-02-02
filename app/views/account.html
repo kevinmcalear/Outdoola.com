@@ -1,12 +1,13 @@
 <tabset justified="true" class="page">
   <tab heading="My Profile pannel">
-    <!-- <div class="panel panel-default">
-      <div class="row-fluid">
-        <div class="col-md-12">
-          <div class="panel-body"> -->
-            <form role="form">
+    <div class="panel panel-default  clearfix">
+      <div class="row-fluid  clearfix">
+        <div class="col-md-12  clearfix">
+          <div class="panel-body  clearfix">
+            <form role="form  clearfix">
               <div class="col-md-6">
                 <h4>Live Edit Your Profile.</h4>
+                {{profile.city}}, {{profile.state}}
                 <img ng-if="profile.picture" class="img-responsive img-thumbnail" height='200px' width='200px' ng-src="data:{{profile.picture.filetype}};base64,{{profile.picture.base64}}">
                 <div class="form-group">
                   <label for="exampleInputFile">Upload A Profile Picture</label>
@@ -51,17 +52,35 @@
                   <input type="text" name="email" ng-model="profile.email" class="form-control" />
                 </div>
                 <div class="form-group">
+                  <label>City:</label>
+                  <input type="text" name="city" ng-model="profile.city" class="form-control" />
+                </div>
+                <div class="form-group">
+                  <label>State:</label>
+                  <input type="text" name="state" ng-model="profile.state" class="form-control" />
+                </div>
+                <div class="form-group">
                   <label for="adventureDescription">Description</label>
                   <textarea class="form-control required" id="adventureDescription" placeholder="Description" ng-model="profile.description" rows="3"></textarea>
                 </div>
+                <div class="form-group">
+                  <label>Interested In:</label>
+                  <input type="text" name="interests" ng-model="profile.interests" class="form-control" />
+                </div>
+                <div class="form-group">
+                  <label>I am a business:</label>
+                  <input type="checkbox" name="business" ng-model="profile.business" class="form-control" />
+                  <span ng-show="profile.business">Yep</span><span ng-hide="profile.business">Nope</span>
+                </div>
+
                 <button role="button" ng-click="logout()" class="btn btn-danger btn-block">Log Out</button>
 
               </div>
             </form>
-          <!-- </div>
+          </div>
         </div>
       </div>
-    </div> -->
+    </div>
      <p class="clearfix"></p>
     </div>
   </tab>
@@ -110,6 +129,29 @@
 
         <button class="btn btn-primary" ng-click="changeEmail(pass, newEmail)">update email</button>
       </form>
+    <!-- </div> -->
+
+    <!-- </div> -->
+     <p class="clearfix"></p>
+  </tab>
+  <tab heading="Payment Info">
+    <!-- <div class="col-md-6"> -->
+    Payment Info Will go here.
+     <!--  <form>
+        <h3>Change Email</h3>
+
+        <p class="form-group">
+          <label>New Email:</label>
+          <input type="text" ng-keypress="clear()" ng-model="newEmail" class="form-control" />
+        </p>
+
+        <p class="form-group">
+          <label>Password:</label>
+          <input type="password" ng-keypress="clear()" ng-model="pass" class="form-control" />
+        </p>
+
+        <button class="btn btn-primary" ng-click="changeEmail(pass, newEmail)">update email</button>
+      </form> -->
     <!-- </div> -->
 
     <!-- </div> -->

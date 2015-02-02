@@ -1,27 +1,27 @@
-<div class="page" toggleOffCanvas>
-   <section class="col-md-6">
+<div class="clearfix page row" toggleOffCanvas>
+   <section class="col-md-6 panel" style="margin-top:-15px;padding-top:15px;margin-bottom:-15px;padding-bottom:15px;">
    <div class="search-box visible-md visible-lg">
     <div class="input-group">
-      <span class="input-group-addon"><i class="fa fa-search text-muted"></i></span>
-      <input class="form-control" type="text" class="form-control" ng-model="searchText" placeholder="Search anything here.">
+      <span class="input-group-addon" style="background:none;border:none;"><i class="fa fa-search text-muted"></i></span>
+      <input class="form-control" style="border-radius:0;border:none;border-bottom: 2px solid lightgray;" type="text" class="form-control" ng-model="searchText" placeholder="Search anything here.">
     </div>
   </div>
   <p class="clearfix"></p>
-     <section class="panel panel-default">
+     <section>
           <!-- <div class="panel-heading"><strong><span class="glyphicon glyphicon-th"></span> Google Map - Dynamic Map</strong></div> -->
-          <div class="panel-body">
+          <div>
               <map class="ui-map" zoom="3" center="[37.7034225,-93.8400607]" map-type-id="TERRAIN" disable-default-u-i="true">
-                <marker ng-repeat="adventure in adventures | reverse | filter:searchText | filter:{size:filterSize}" position="encodeAddress( {{ adventure.location }} );" icon="//s3.amazonaws.com/outdoola/marker.png" on-click="toAdventure({{adventure.$id}})"></marker>
+                <marker ng-repeat="adventure in adventures | reverse | filter:searchText | filter:{size:filterSize}" position="{{ adventure.latLong.lat }} {{ adventure.latLong.lng }}" icon="//s3.amazonaws.com/outdoola/marker.png"></marker>
               </map>
           </div>
       </section>
-      <section class="panel panel-default">
+      <section>
         <div class="panel-body">
             <div class="row">
                 <h5 class="panel-body"><strong>Your Trip Date: {{dt | date:'fullDate'}}</strong></h5>
                 <div class="col-sm-3" data-ng-controller="TypeaheadCtrl" ng-model="state">
                   <input type="text"
-                     ng-model="selected"
+                     ng-model="adventureState"
                      typeahead="state for state in states | filter:$viewValue | limitTo:8"
                      class="form-control"
                      placeholder="Which state?">
@@ -65,17 +65,17 @@
           <h5><strong>Types Of Adventures:</strong></h5>
           <dl>
               <dd>
-                  <label class="ui-checkbox"><input name="checkbox1" type="checkbox" value="option1" checked><span>Hunting</span></label>
-                  <label class="ui-checkbox"><input name="checkbox1" type="checkbox" value="option2" ><span>Fishing</span></label>
-                  <label class="ui-checkbox"><input name="checkbox1" type="checkbox" value="option3"><span>Camping</span></label>
-                  <label class="ui-checkbox"><input name="checkbox1" type="checkbox" value="option3"><span>Water</span></label>
+                  <label class="ui-checkbox"><input name="checkbox1" type="checkbox" value="option1" ng-model="hunting"><span>Hunting</span></label>
+                  <label class="ui-checkbox"><input name="checkbox1" type="checkbox" value="option2" ng-model="fishing"><span>Fishing</span></label>
+                  <label class="ui-checkbox"><input name="checkbox1" type="checkbox" value="option3" ng-model="camping"><span>Camping</span></label>
+                  <label class="ui-checkbox"><input name="checkbox1" type="checkbox" value="option3" ng-model="water"><span>Water</span></label>
               </dd>
           </dl>
         </div>
         <div class="panel-body">
           <div class="row">
             <div class="col-sm-12">
-              <h5><strong>Price Range</strong></h5>
+             <!--  <h5><strong>Price Range</strong></h5>
               <input type="text"
                  value=""
                  ui-range-slider
@@ -98,7 +98,7 @@
                  data-slider-value="30"
                  data-slider-selection="before"
                  data-slider-tooltip="show"
-                 data-slider-handle="round">
+                 data-slider-handle="round"> -->
             </div>
           </div>
         </div>
@@ -109,7 +109,7 @@
       </section>
    </section>
    <section class="col-md-6">
-      <section ng-repeat="adventure in adventures | reverse | filter:searchText | filter:{size:filterSize}" class="col-md-6 min-400">
+      <section ng-repeat="adventure in adventures | reverse | filter:searchText | filter:{size:filterSize} | filter:{state:adventureState} | filter:{hunting:hunting} | filter:{fishing:fishing} | filter:{camping:camping} | filter:{water:water}" class="col-md-6 min-400">
         <!-- profile panel -->
         <div class="panel panel-profile">
           <div class="panel-heading text-center" style="padding: 0px;">
@@ -133,11 +133,12 @@
                 <p class="text-muted">Person</p>
               </li>
               <li>
-                <p class="size-h3">{{ adventure.location.split(',')[1]}}</p>
-                <p class="text-muted">{{ adventure.location.split(',')[0] }}</p>
+                <p class="size-h3">{{ adventure.city ? adventure.city : adventure.location.split(',')[1] }}</p>
+                <p class="text-muted">{{ adventure.state ? adventure.state : adventure.location.split(',')[0] }}</p>
               </li>
             </ul>
           </div>
+          <div ng-show="adventure.owner.business" class="text-center" style="background: rgb(20, 58, 116);color: white;font-weight: bold;letter-spacing: 2px;border-bottom-right-radius:2px;border-bottom-left-radius:2px;">COMPANY</div>
         </div>
         <!-- end profile panel -->
       </section>
